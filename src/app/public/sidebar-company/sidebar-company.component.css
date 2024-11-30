@@ -91,7 +91,10 @@ body.dark-theme {
   z-index: var(--z-fixed);
   margin: .75rem;
 }
-
+.issuer-img {
+  width: 50px;
+  height: auto;
+}
 .header__container {
   width: 100%;
   height: var(--header-height);
