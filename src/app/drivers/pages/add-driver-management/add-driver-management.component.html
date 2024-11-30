@@ -1,0 +1,36 @@
+
+
+<div class="driver-form-container">
+  <h2 class="form-title">Agregar Conductor</h2>
+  <form (submit)="onSubmit()" #driverForm="ngForm" class="driver-form">
+    <mat-form-field appearance="outline" class="full-width mat-elegant-field">
+      <mat-label>Nombre</mat-label>
+      <input matInput placeholder="Nombre del conductor" name="name" required [(ngModel)]="driver.name">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width mat-elegant-field">
+      <mat-label>DNI</mat-label>
+      <input matInput placeholder="DNI del conductor" name="dni" required [(ngModel)]="driver.dni">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width mat-elegant-field">
+      <mat-label>Licencia</mat-label>
+      <input matInput placeholder="Licencia del conductor" name="license" required [(ngModel)]="driver.license">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width mat-elegant-field">
+      <mat-label>Teléfono</mat-label>
+      <input matInput placeholder="Teléfono del conductor" name="contactNum" required [(ngModel)]="driver.contactNum">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width mat-elegant-field">
+      <mat-label>URL de Foto</mat-label>
+      <input matInput placeholder="URL de la foto del conductor" name="photoUrl" [(ngModel)]="driver.photoUrl">
+    </mat-form-field>
+
+    <div class="button-group">
+      <button mat-raised-button color="primary" class="btn-submit">Agregar</button>
+      <button mat-button color="warn" class="btn-cancel" (click)="onCancel()">Cancelar</button>
+    </div>
+  </form>
+</div>

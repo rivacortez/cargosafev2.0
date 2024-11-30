@@ -1,0 +1,93 @@
+.trip-management-container {
+  padding: 24px;
+  background-color: #f0f2f5;
+}
+
+.trip-table-card {
+  margin-top: 24px;
+  padding: 24px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.trip-mat-card-title {
+  font-size: 1.6rem;
+  color: #ffa300;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.table-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.mat-table {
+  width: 100%;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .table-wrapper {
+    width: 100%;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search__input {
+  font-family: inherit;
+  font-size: inherit;
+  background-color: #e8ebed;
+  border: none;
+  color: #666;
+  padding: 0.8rem 1.2rem;
+  border-radius: 20px;
+  width: 16em;
+  transition: all 0.3s ease-in-out;
+}
+
+.search__input:hover, .search__input:focus {
+  box-shadow: 0 0 0.5em #00000020;
+  background-color: #f3f4f5;
+}
+
+.search__input:focus {
+  outline: none;
+}
+
+.search__input::-webkit-input-placeholder {
+  font-weight: 400;
+  color: #aaa;
+}
+
+.search__button {
+  border: none;
+  background-color: transparent;
+  margin-left: -2rem;
+  display: flex;
+  align-items: center;
+}
+
+.search__button:hover {
+  cursor: pointer;
+}
+
+.search__icon {
+  height: 1.5em;
+  width: 1.5em;
+  fill: #888;
+  transition: fill 0.3s;
+}
+
+.search__button:hover .search__icon {
+  fill: #555;
+}

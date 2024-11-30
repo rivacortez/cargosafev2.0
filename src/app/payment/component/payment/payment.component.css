@@ -1,0 +1,114 @@
+:root {
+  --primary-color: #0056b3;
+  --background-color: #007fff;
+  --text-color: #333333;
+  --input-background: #ff0000;
+  --input-border: #ced4da;
+}
+
+.payment-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: var(--background-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.payment-card {
+  width: 45%;
+}
+
+.payment-title {
+  text-align: center;
+  font-size: 24px;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.payment-field {
+  margin-bottom: 15px;
+}
+
+.payment-field label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+.payment-field input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--input-border);
+  border-radius: 5px;
+  background-color: var(--input-background);
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.payment-field input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.submit-btn {
+  background-color: #0c7df8;
+  color: #d6eaff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+.payment-brands {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.payment-brands h3 {
+  font-size: 18px;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.brand-logos {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.brand-logos img {
+  width: 50px;
+  height: auto;
+}
+
+.trip-details {
+  width: 45%;
+  background-color: var(--background-color);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.trip-details h3 {
+  text-align: center;
+  font-size: 22px;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.trip-details p {
+  font-size: 16px;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}

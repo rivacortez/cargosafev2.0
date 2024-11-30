@@ -1,0 +1,65 @@
+
+<div *ngIf="trip" class="trip-details-container">
+  <i class="fas fa-arrow-left icon-back" (click)="goBack()" aria-hidden="true"></i>
+
+
+  <div class="trip-card">
+
+    <div class="trip-card-header">
+
+      <h2 class="trip-title">Detalles del Viaje</h2>
+    </div>
+
+    <div class="trip-info-section">
+      <p><strong>Tipo:</strong> {{ trip.type }}</p>
+      <p><strong>Destino:</strong> {{ trip.destinationAddress }}</p>
+      <p><strong>Cliente:</strong> {{ trip.holderName }}</p>
+      <p><strong>Detalle del pedido:</strong> {{ trip.loadDetail }}</p>
+      <p><strong>Ubicacion de Carga:</strong> {{ trip.pickupAddress }}</p>
+      <p><strong>Conductor:</strong> {{ driverName }}</p>
+      <p><strong>Vehículo:</strong> {{ vehiclePlate }}</p>
+      <p><strong>Fecha Estimada de Entrega:</strong> {{ trip.destinationDate | date }}</p>
+      <p><strong>Costo Total:</strong> {{ trip.totalAmount | currency }}</p>
+    </div>
+
+    <form [formGroup]="tripForm" (ngSubmit)="onSubmit()" class="trip-form">
+      <div class="form-group">
+        <label for="driverId">Conductor:</label>
+        <select id="driverId" formControlName="driverId" required>
+          <option *ngFor="let driver of drivers" [value]="driver.id">{{ driver.name }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="vehicleId">Vehículo:</label>
+        <select id="vehicleId" formControlName="vehicleId" required>
+          <option *ngFor="let vehicle of vehicles" [value]="vehicle.id">{{ vehicle.model }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="destinationDate">Fecha Estimada de Entrega:</label>
+        <input type="date" id="destinationDate" formControlName="destinationDate" required>
+      </div>
+
+      <div class="form-group">
+        <label for="totalAmount">Costo Total:</label>
+        <input type="number" id="totalAmount" formControlName="totalAmount" placeholder="Ingrese el costo total" required>
+      </div>
+
+      <div class="form-actions">
+
+
+          <button type="button" class="btn-save" (click)="onSubmit()">Guardar</button>
+
+      </div>
+
+
+    </form>
+  </div>
+</div>
+
+<button class="btn-class-name" (click)="trip ? openAssignDialog(trip) : null">
+  <span class="back"></span>
+  <span class="front"></span>
+</button>

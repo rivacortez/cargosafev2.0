@@ -1,0 +1,18 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-image: url('https://c4.wallpaperflare.com/wallpaper/840/457/79/the-sky-track-volvo-2013-euro-truck-simulator-2-wallpaper-preview.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.form-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: rgba(68, 68, 68, 0.8);
+  border-radius: 8px;
+}

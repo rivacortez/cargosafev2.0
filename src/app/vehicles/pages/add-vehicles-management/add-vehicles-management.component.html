@@ -1,0 +1,35 @@
+
+<div class="vehicle-form-container">
+  <h2 class="form-title">Agregar Vehículo</h2>
+  <form (submit)="onSubmit()" #vehicleForm="ngForm" class="vehicle-form">
+    <mat-form-field appearance="outline" class="full-width mat-elegant-field">
+      <mat-label>Modelo</mat-label>
+      <input matInput placeholder="Modelo del vehículo" name="model" required [(ngModel)]="vehicle.model">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width mat-elegant-field">
+      <mat-label>Placa</mat-label>
+        <input matInput placeholder="Placa del vehículo" name="plate" required [(ngModel)]="vehicle.plate">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width mat-elegant-field">
+      <mat-label>Carga Máxima (kg)</mat-label>
+      <input matInput placeholder="Ej: 1500" name="maxLoad" type="number" required [(ngModel)]="vehicle.maxLoad">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width mat-elegant-field">
+      <mat-label>Volumen (m³)</mat-label>
+      <input matInput placeholder="Ej: 12.5" name="volume" type="number" required [(ngModel)]="vehicle.volume">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width mat-elegant-field">
+      <mat-label>URL de Imagen</mat-label>
+      <input matInput placeholder="URL de la imagen del vehículo" name="photoUrl" [(ngModel)]="vehicle.photoUrl">
+    </mat-form-field>
+
+    <div class="button-group">
+      <button mat-raised-button color="primary" class="btn-submit">Agregar</button>
+      <button mat-button color="warn" class="btn-cancel" (click)="onCancel()">Cancelar</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,11 @@
+<div class="dialog-container">
+  <h1 mat-dialog-title class="dialog-title">
+    <mat-icon>check_circle</mat-icon> Success
+  </h1>
+  <div mat-dialog-content class="dialog-content">
+    <p>{{ data.message }}</p>
+  </div>
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-raised-button color="primary" (click)="onClose()">OK</button>
+  </div>
+</div>

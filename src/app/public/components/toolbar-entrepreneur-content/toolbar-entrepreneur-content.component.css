@@ -1,0 +1,61 @@
+.custom-toolbar {
+  background-color: #f1f500;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+
+  .spacer {
+    flex: 1;
+  }
+  .toolbar-content {
+    cursor: pointer;
+  }
+  .toolbar-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .issuer-img {
+      height: 40px;
+      width: auto;
+    }
+
+    .header-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+    }
+  }
+
+  .toolbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .nav-button {
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      mat-icon {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .notification-button,
+  .profile-button {
+    color: #333;
+  }
+
+  .custom-dropdown-panel {
+    &.wide-menu {
+      width: 300px;
+    }
+
+    &.expanded {
+      width: 500px;
+    }
+  }
+}

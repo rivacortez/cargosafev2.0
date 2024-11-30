@@ -1,0 +1,103 @@
+.driver-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 3rem;
+  background-color: #fdfdfd;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  animation: fadeIn 0.8s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.driver-form-container:hover {
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.form-title {
+  font-size: 26px;
+  text-align: center;
+  color: #37474f;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.driver-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.mat-elegant-field {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+.mat-elegant-field .mat-input-element {
+  padding: 0.7rem;
+  font-size: 1.1rem;
+  transition: border-color 0.3s ease;
+}
+.mat-elegant-field.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #F1F500;
+}
+
+.mat-elegant-field:hover .mat-input-element {
+  border-color: #F1F500;
+}
+
+.mat-elegant-field .mat-form-field-label {
+  color: #333333;
+  font-weight: bold;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.btn-submit {
+  background-color: #F1F500;
+  color: #333333;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #e5db00;
+}
+
+.btn-cancel {
+  color: #ff5252;
+  font-size: 1.1rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  transition: color 0.3s ease;
+}
+
+.btn-cancel:hover {
+  color: #ff0000;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,76 @@
+
+.driver-management-container {
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.driver-table-card {
+  margin-top: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  color: #333;
+}
+
+.driver-mat-card-title {
+  font-size: 1.5rem;
+  color: #8d8000;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.mat-table {
+  width: 100%;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+}
+
+.mat-header-cell {
+  background-color: #f0f2f5;
+  color: #333;
+  font-weight: bold;
+}
+
+.mat-cell {
+  background-color: #fff;
+  color: #333;
+  padding: 8px 16px;
+}
+
+.mat-paginator {
+  background-color: #fff;
+  color: #333;
+}
+
+.mat-icon-button {
+  color: #ffeb3b;
+}
+
+.add-driver-button {
+  background-color: #ffeb3b;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.add-driver-button:hover {
+  background-color: #e8d838;
+}
+
+@media (max-width: 768px) {
+  .driver-table-card {
+    padding: 16px;
+  }
+
+  .mat-table {
+    font-size: 0.9rem;
+  }
+
+  .mat-paginator {
+    justify-content: flex-start;
+  }
+}

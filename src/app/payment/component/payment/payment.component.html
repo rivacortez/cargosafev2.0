@@ -1,0 +1,40 @@
+
+<div class="payment-container">
+  <div class="payment-card">
+    <h2 class="payment-title">Payment Details</h2>
+    <div class="payment-field">
+      <label for="cardNumber">Card Number</label>
+      <input type="text" id="cardNumber" [(ngModel)]="payment.cardNumber" required placeholder="**** **** **** ****">
+    </div>
+    <div class="payment-field">
+      <label for="expiryDate">Expiry Date</label>
+      <input type="text" id="expiryDate" [(ngModel)]="payment.expiryDate" required placeholder="MM/YY">
+    </div>
+    <div class="payment-field">
+      <label for="securityCode">Security Code</label>
+      <input type="text" id="securityCode" [(ngModel)]="payment.securityCode" required placeholder="***">
+    </div>
+    <button class="submit-btn" (click)="onSubmit()">Submit Payment</button>
+    <div class="payment-brands">
+      <h3>Accepted Payment Methods</h3>
+      <div class="brand-logos">
+        <img src="assets/images/visaIMG.png" alt="Visa">
+        <img src="assets/images/MASTERC.jpg" alt="MasterCard">
+        <img src="assets/images/discoverIMG.jpg" alt="American Express">
+      </div>
+    </div>
+  </div>
+
+  <div class="trip-details" *ngIf="trip">
+    <h3>Trip Details</h3>
+    <p><strong>Tipo:</strong> {{ trip.type }}</p>
+    <p><strong>Destino:</strong> {{ trip.destinationAddress }}</p>
+    <p><strong>Cliente:</strong> {{ trip.holderName }}</p>
+    <p><strong>Detalle del pedido:</strong> {{ trip.loadDetail }}</p>
+    <p><strong>Ubicacion de Carga:</strong> {{ trip.pickupAddress }}</p>
+    <p><strong>Conductor:</strong> {{ driverName }}</p>
+    <p><strong>Vehículo:</strong> {{ vehiclePlate }}</p>
+    <p><strong>Fecha Estimada de Entrega:</strong> {{ trip.destinationDate | date }}</p>
+    <p><strong>Costo Total:</strong> {{ trip.totalAmount | currency }}</p>
+  </div>
+</div>

@@ -1,0 +1,95 @@
+<mat-toolbar class="toolbar" color="primary">
+  <span class="spacer"></span>
+
+  <div routerLink="/home-company" class="toolbar-content">
+    <img src="./assets/images/cargosafe-logo.png" class="issuer-img" alt="CargoSafe Logo" />
+    <p class="header-title" aria-label="title">CargoSafe</p>
+  </div>
+
+  <span class="spacer"></span>
+
+  <nav class="toolbar-nav">
+    <button mat-button [matMenuTriggerFor]="registroMenu">
+      <mat-icon>assignment</mat-icon>
+      <span class="nav-text">Registro</span>
+    </button>
+
+    <mat-menu #registroMenu="matMenu">
+      <button mat-menu-item routerLink="/list-request-trip">
+        <mat-icon>assignment</mat-icon>
+        <span>Solicitudes de Viaje</span>
+      </button>
+      <button mat-menu-item routerLink="/add-trip-details">
+        <mat-icon>manage_accounts</mat-icon>
+        <span>Administrar Viajes</span>
+      </button>
+    </mat-menu>
+
+    <button mat-icon-button [matMenuTriggerFor]="driversMenu" aria-label="Conductores">
+      <mat-icon>people</mat-icon>
+    </button>
+    <mat-menu #driversMenu="matMenu">
+      <button mat-menu-item routerLink="/management/driver/new">
+        <mat-icon>person_add</mat-icon>
+        <span>Agregar Conductor</span>
+      </button>
+      <button mat-menu-item routerLink="/drivers/management">
+        <mat-icon>manage_accounts</mat-icon>
+        <span>Ver Conductores</span>
+      </button>
+    </mat-menu>
+
+    <button mat-icon-button [matMenuTriggerFor]="vehiclesMenu" aria-label="Vehículos">
+      <mat-icon>local_shipping</mat-icon>
+    </button>
+    <mat-menu #vehiclesMenu="matMenu">
+      <button mat-menu-item routerLink="/management/vehicle/new">
+        <mat-icon>add_circle</mat-icon>
+        <span>Agregar Vehículo</span>
+      </button>
+      <button mat-menu-item routerLink="/vehicles/management">
+        <mat-icon>directions_car</mat-icon>
+        <span>Ver Vehículos</span>
+      </button>
+    </mat-menu>
+  </nav>
+
+  <span class="button-i18n" aria-description="switcher button for i18n">
+    <app-language-switcher></app-language-switcher>
+  </span>
+
+  <button
+    mat-icon-button
+    aria-label="Notificaciones"
+    [matMenuTriggerFor]="notificationsMenu"
+    matBadge="{{ notificationCount }}"
+    matBadgeColor="warn"
+
+  >
+    <mat-icon>notifications</mat-icon>
+    <span class="cdk-visually-hidden">You have {{ notificationCount }} new notifications</span>
+  </button>
+
+  <mat-menu #notificationsMenu="matMenu" class="custom-dropdown-panel wide-menu" [ngClass]="{'expanded': isNotificationPanelExpanded}">
+    <app-request-notification (notificationDeleted)="onNotificationDeleted()"></app-request-notification>
+  </mat-menu>
+
+  <button mat-icon-button [matMenuTriggerFor]="profileMenu" aria-label="Perfil">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #profileMenu="matMenu">
+    <button mat-menu-item (click)="navigateToProfile()">
+      <mat-icon>profile</mat-icon>
+      <span>Editar Perfil</span>
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Cerrar sesión</span>
+    </button>
+
+  </mat-menu>
+</mat-toolbar>
+
+<div *ngIf="showNotifications">
+  <app-request-notification></app-request-notification>
+</div>

@@ -1,0 +1,95 @@
+
+<div class="container">
+  <div class="add-trip-card">
+    <div class="add-trip-header">
+
+      <span>Solicita un Viaje</span>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #tripForm="ngForm" class="form-content">
+
+      <div class="input-group">
+        <label for="holderName">Nombre del Titular</label>
+        <input type="text" id="holderName" placeholder="Nombre del Titular" name="holderName" required [(ngModel)]="trip.holderName" #holderName="ngModel">
+        <div *ngIf="holderName.invalid && holderName.touched" class="error-message">Nombre del titular es requerido</div>
+      </div>
+
+    <div class="input-group">
+      <label for="type">Tipo de carga</label>
+      <select id="type" name="type" required [(ngModel)]="trip.type" #type="ngModel">
+        <option value="" disabled selected>Selecciona el tipo de carga</option>
+        <option value="Pesada">Pesada</option>
+        <option value="Ligera">Ligera</option>
+      </select>
+      <div *ngIf="type.invalid && type.touched" class="error-message">Tipo de carga es requerido</div>
+    </div>
+
+    <div class="input-group">
+      <label for="loadDetail">Detalle de carga</label>
+      <input type="text" id="loadDetail" placeholder="Detalle de carga" name="loadDetail" required [(ngModel)]="trip.loadDetail" #loadDetail="ngModel">
+      <div *ngIf="loadDetail.invalid && loadDetail.touched" class="error-message">Detalle de carga es requerido</div>
+    </div>
+
+    <div class="input-group">
+      <label for="numberPackages">Número de paquetes</label>
+      <input type="number" id="numberPackages" placeholder="Número de paquetes" name="numberPackages" required [(ngModel)]="trip.numberPackages" #numberPackages="ngModel">
+      <div *ngIf="numberPackages.invalid && numberPackages.touched" class="error-message">Número de paquetes es requerido</div>
+    </div>
+
+    <div class="input-group">
+      <label for="weight">Kg de carga</label>
+      <input type="number" id="weight" placeholder="Kg de carga" name="weight" required [(ngModel)]="trip.weight" #weight="ngModel">
+      <div *ngIf="weight.invalid && weight.touched" class="error-message">Kg de carga es requerido</div>
+      </div>
+
+    </form>
+</div>
+
+
+
+
+
+
+
+  <div class="map-section">
+    <div class="card">
+      <h3>Ubicaciones de Mapa</h3>
+
+      <div class="input-group">
+        <label for="pickup">Punto de recogida:</label>
+        <input id="pickup" type="text" [(ngModel)]="pickupAddress" (input)="onPickupInput()" placeholder="Ingrese la ubicación">
+        <ul *ngIf="pickupSuggestions.length > 0" class="suggestions">
+          <li *ngFor="let suggestion of pickupSuggestions" (click)="selectPickupSuggestion(suggestion)">
+            {{ suggestion.display_name }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="input-group">
+        <label for="destination">Punto de destino:</label>
+        <input id="destination" type="text" [(ngModel)]="destinationAddress" (input)="onDestinationInput()" placeholder="Ingrese la ubicación">
+        <ul *ngIf="destinationSuggestions.length > 0" class="suggestions">
+          <li *ngFor="let suggestion of destinationSuggestions" (click)="selectDestinationSuggestion(suggestion)">
+            {{ suggestion.display_name }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="button-group">
+        <button class="btn primary" (click)="updateMarkers()">Actualizar Puntos</button>
+        <button class="btn secondary" (click)="showMap()">Mostrar mi ubicación</button>
+      </div>
+
+      <div class="distance-display">
+        <p *ngIf="distance !== null">Distancia: {{ distance | number: '1.0-2' }} metros</p>
+      </div>
+    </div>
+
+    <div #mapContainer id="map"></div>
+  </div>
+
+</div>
+<div class="bottttton">
+  <button type="submit" class="btn primary" (click)="onSubmit()">Registrar Solicitud</button>
+</div>
+

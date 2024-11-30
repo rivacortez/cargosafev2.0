@@ -1,0 +1,96 @@
+:root {
+  --primary-color: #f1f500;
+  --background-color: #0e0d0b;
+  --text-color: #ff0000;
+}
+
+.notification-panel {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.panel-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.notification-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-details {
+  font-size: 18px;
+  color: var(--text-color);
+  flex: 1;
+  padding-right: 10px;
+}
+
+.view-more-btn {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 10px;
+}
+
+.view-more-btn:hover {
+  background-color: #e6e600;
+}
+
+.delete-btn {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: none;
+  cursor: pointer;
+  padding: 0 8px;
+  font-size: 20px;
+  transition: color 0.3s;
+}
+
+.delete-btn:hover {
+  color: red;
+}
+
+@media (max-width: 768px) {
+  .panel-header {
+    font-size: 20px;
+  }
+
+  .notification-details {
+    font-size: 16px;
+  }
+
+  .view-more-btn {
+    font-size: 14px;
+  }
+
+  .delete-btn {
+    font-size: 18px;
+  }
+}
+
+.wide-notification-panel {
+  min-width: 800px;
+  max-width: 1000px;
+  padding: 24px;
+}

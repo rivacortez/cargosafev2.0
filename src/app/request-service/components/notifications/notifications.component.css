@@ -1,0 +1,36 @@
+.notification {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 4px;
+  margin: 8px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: opacity 0.3s ease-in-out;
+
+  &.notification-info {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+  }
+
+  &.notification-warning {
+    background-color: #fff3e0;
+    color: #e65100;
+  }
+
+  &.notification-error {
+    background-color: #ffebee;
+    color: #b71c1c;
+  }
+
+  .notification-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+  }
+
+  .notification-content {
+    flex-grow: 1;
+  }
+}
