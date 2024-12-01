@@ -1,11 +1,11 @@
 <div class="profile-container">
   <div class="profile-header">
-    <img [src]="profileForm.get('postalCode')?.value || 'https://i.pinimg.com/originals/c7/f5/78/c7f578937fdc07702eacff129b4107f7.png'" alt="Profile Avatar" class="profile-avatar" />
+    <img [src]="profileForm.get('profileImageUrl')?.value || 'https://i.pinimg.com/originals/c7/f5/78/c7f578937fdc07702eacff129b4107f7.png'" alt="Profile Avatar" class="profile-avatar" />
     <div class="profile-info">
-      <h2 class="profile-name">{{ profile?.firstName  }}{{ profile?.lastName  }}</h2>
-      <p class="profile-role">{{ profile?.street }}</p>
+      <h2 class="profile-name">{{ profile?.firstName }} {{ profile?.lastName }}</h2>
+      <p class="profile-role">{{ profile?.biography }}</p>
       <div class="profile-buttons">
-
+        <!-- Add buttons if needed -->
       </div>
     </div>
   </div>
@@ -17,12 +17,23 @@
   <div class="edit-profile-section">
     <h3>Edit Profile</h3>
     <p>Update profile picture, full name, username, biography, contact information, and recent activity or posts</p>
-    <form class="edit-form" [formGroup]="profileForm" (ngSubmit)="onUpdate()">
+    <form class="edit-form" [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+      <ngx-dropzone (change)="onSelect($event)">
+        <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone>
+
+      <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
+        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+      </ngx-dropzone-image-preview>
+ <input type="button" value="Upload" (click)="onUpdate()" />
       <label>Avatar URL</label>
-      <input type="text" placeholder="Avatar URL" formControlName="postalCode" />
+      <input type="text" placeholder="Avatar URL" formControlName="profileImageUrl" />
 
       <label>Biography</label>
-      <textarea placeholder="Biography" formControlName="street"></textarea>
+      <textarea placeholder="Biography" formControlName="biography"></textarea>
 
       <label>First Name</label>
       <input type="text" placeholder="First Name" formControlName="firstName" />
@@ -33,13 +44,17 @@
       <label>Email</label>
       <input type="email" placeholder="Email" formControlName="email" />
 
+      <label>Phone</label>
+      <input type="text" placeholder="Phone" formControlName="phone" />
+
+      <label>Street</label>
+      <input type="text" placeholder="Street" formControlName="street" />
 
       <label>Number</label>
       <input type="text" placeholder="Number" formControlName="number" />
 
       <label>City</label>
       <input type="text" placeholder="City" formControlName="city" />
-
 
       <label>Country</label>
       <input type="text" placeholder="Country" formControlName="country" />

@@ -12,6 +12,13 @@ import { HttpInterceptorFn } from '@angular/common/http';
  */
 export const authenticationInterceptor: HttpInterceptorFn = (request, next) => {
   const token = localStorage.getItem('token');
+  const cloudinaryUrl = 'https://api.cloudinary.com/v1_1/du35rv7mm/image/upload';
+
+  if (request.url === cloudinaryUrl) {
+    return next(request);
+  }
+
+
   const handledRequest = token
     ? request.clone({ headers: request.headers.set('Authorization', `Bearer ${token}`) })
     : request;

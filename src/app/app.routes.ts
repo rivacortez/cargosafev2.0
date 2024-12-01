@@ -39,7 +39,7 @@ import {SidebarCompanyComponent} from "./public/sidebar-company/sidebar-company.
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home-company', pathMatch: 'full' },
-  { path: 'home-company', component: HomeCompanyComponent },
+  { path: 'home-company', component: HomeCompanyComponent, canActivate: [authenticationGuard] },
 
   // IAM
   { path: 'sign-in', component: SignInComponent },
@@ -49,16 +49,16 @@ export const routes: Routes = [
   { path: 'pages', component: PageNotFoundComponent },
 
 // Driver management
-  { path: 'drivers/management', component: DriverManagementComponent },
-  { path: 'management/driver/new', component: AddDriverManagementComponent },
+  { path: 'drivers/management', component: DriverManagementComponent, canActivate: [authenticationGuard] },
+  { path: 'management/driver/new', component: AddDriverManagementComponent, canActivate: [authenticationGuard] },
 
   // Vehicles management
-  { path: 'management/vehicle/new', component: AddVehiclesManagementComponent },
-  { path: 'vehicles/management', component: VehiclesManagementComponent },
+  { path: 'management/vehicle/new', component: AddVehiclesManagementComponent, canActivate: [authenticationGuard] },
+  { path: 'vehicles/management', component: VehiclesManagementComponent, canActivate: [authenticationGuard] },
 
   // Add new order
-  { path: 'list-request-trip', component: ListRequestTripComponent },
-  { path: 'stadistics', component: StatisticsComponent },
+  { path: 'list-request-trip', component: ListRequestTripComponent, canActivate: [authenticationGuard] },
+  { path: 'stadistics', component: StatisticsComponent, canActivate: [authenticationGuard] },
 
   // Entrepreneur
   { path: 'a', component: ToolbarEntrepreneurContentComponent },

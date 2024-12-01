@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterLink, RouterOutlet} from "@angular/router";
+import {AuthenticationService} from "../../iam/services/authentication.service";
+import {ProfileService} from "../../profile/service/profile.service";
 
 @Component({
   selector: 'app-sidebar-company',
@@ -13,10 +15,31 @@ import {RouterLink, RouterOutlet} from "@angular/router";
   styleUrl: './sidebar-company.component.css'
 })
 export class SidebarCompanyComponent implements OnInit {
+  username: string = '';
+  email: string = '';
+  profileImageUrl: string = '';
+
   ngOnInit(): void {
     this.showSidebar('header-toggle', 'sidebar', 'header', 'main');
     this.setupSidebarLinks();
     this.setupThemeButton();
+    this.loadUserProfile();
+  }
+  constructor(
+    private authenticationService: AuthenticationService,
+    private profileService: ProfileService
+  ) {}
+
+  private loadUserProfile(): void {
+    this.authenticationService.currentUserId.subscribe(userId => {
+      if (userId) {
+        this.profileService.getById(userId).subscribe(profile => {
+          this.username = profile.firstName;
+          this.email = profile.email;
+          this.profileImageUrl = profile.profileImageUrl || 'https://i.pinimg.com/originals/c7/f5/78/c7f578937fdc07702eacff129b4107f7.png';
+        });
+      }
+    });
   }
 
   private showSidebar(

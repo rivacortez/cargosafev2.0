@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BaseService} from "../../../shared/services/base.service";
 import {ProfileEntity} from "../model/profile.entity";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 
@@ -9,7 +9,7 @@ import {map} from "rxjs/operators";
   providedIn: 'root'
 })
 export class ProfileService  extends BaseService<ProfileEntity> {
-
+  private urllll: string = 'https://api.cloudinary.com/v1_1/du35rv7mm/image/upload';
   constructor(private httpClient: HttpClient) {
     super();
     this.resourceEndpoint = '/profiles';
@@ -26,9 +26,9 @@ export class ProfileService  extends BaseService<ProfileEntity> {
           lastName: lastName,
           email: response.email,
           street: response.street,
-          number: response.number,
+          phone: response.phone,
           city: response.city,
-          postalCode: response.postalCode,
+          profileImageUrl: response.profileImageUrl,
           country: response.country
         });
       })
@@ -41,10 +41,11 @@ export class ProfileService  extends BaseService<ProfileEntity> {
       lastName: profile.lastName,
       email: profile.email,
       street: profile.street,
-      number: profile.number,
+      phone: profile.phone,
       city: profile.city,
-      postalCode: profile.postalCode,
-      country: profile.country
+      country: profile.country,
+      biography: profile.biography,
+      profileImageUrl: profile.profileImageUrl
     };
     return this.http.put<ProfileEntity>(`${this.resourcePath()}/${id}`, requestPayload, this.httOptions);
   }
@@ -60,5 +61,11 @@ export class ProfileService  extends BaseService<ProfileEntity> {
 
   getByUsername(username: string): Observable<ProfileEntity> {
     return this.http.get<ProfileEntity>(`${this.baseUrl}/profiles/username/${username}`);
+  }
+
+  url:string= 'https://api.cloudinary.com/v1_1/du35rv7mm/image/upload';
+
+  uploadImg(data: any): Observable<any> {
+    return this.httpClient.post(this.urllll, data);
   }
 }

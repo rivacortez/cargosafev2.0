@@ -14,13 +14,14 @@
   <div class="sidebar__container">
     <div class="sidebar__user">
       <div class="sidebar__img">
-        <img src="perfil.png" alt="User Profile">
+        <img [src]="profileImageUrl" alt="Profile Avatar" class="profile-avatar" />
       </div>
       <div class="sidebar__info">
-        <h3>rivatest</h3>
-        <span>test.commmm</span>
+        <h3>{{ username }}</h3>
+        <span>{{ email }}</span>
       </div>
     </div>
+
 
     <div class="sidebar__content">
       <div>
@@ -37,15 +38,15 @@
           </a>
           <a routerLink="/list-request-trip" class="sidebar__link">
             <i class="ri-calendar-fill"></i>
-            <span>Request Trip</span>
+            <span>Requested Trips</span>
           </a>
           <a routerLink="/list-request-history" class="sidebar__link">
             <i class="ri-arrow-up-down-line"></i>
             <span>Request History</span>
           </a>
-          <a routerLink="/list-trips" class="sidebar__link">
+          <a routerLink="/stadistics" class="sidebar__link">
             <i class="ri-bar-chart-box-fill"></i>
-            <span>Trips</span>
+            <span>Statistics</span>
           </a>
         </div>
       </div>
@@ -53,7 +54,7 @@
       <div>
         <h3 class="sidebar__title">SETTINGS</h3>
         <div class="sidebar__list">
-          <a routerLink="/settings" class="sidebar__link">
+          <a routerLink="/profile" class="sidebar__link">
             <i class="ri-settings-3-fill"></i>
             <span>Settings</span>
           </a>

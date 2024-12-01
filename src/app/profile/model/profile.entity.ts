@@ -1,42 +1,39 @@
 export class ProfileEntity {
   id: number;
   userId: number;
-  bio: string;
-  avatar: string;
   firstName: string;
   lastName: string;
   email: string;
   street: string;
-  number: string;
+  phone: string;
   city: string;
-  postalCode: string;
   country: string;
+  biography: string;
+  profileImageUrl: string;
 
   constructor(profile: {
     id?: number;
     userId?: number;
-    bio?: string;
-    avatar?: string;
     firstName?: string;
     lastName?: string;
     email?: string;
     street?: string;
-    number?: string;
+    phone?: string;
     city?: string;
-    postalCode?: string;
     country?: string;
+    biography?: string;
+    profileImageUrl?: string;
   }) {
     this.id = profile.id ?? 0;
     this.userId = profile.userId ?? 0;
-    this.bio = profile.bio || '';
-    this.avatar = profile.avatar || '';
     this.firstName = profile.firstName || '';
     this.lastName = profile.lastName || '';
     this.email = profile.email || '';
     this.street = profile.street || '';
-    this.number = profile.number || '';
+    this.phone = profile.phone || '';
     this.city = profile.city || '';
-    this.postalCode = profile.postalCode || '';
     this.country = profile.country || '';
+    this.biography = profile.biography || '';
+    this.profileImageUrl = profile.profileImageUrl || '';
   }
 }
