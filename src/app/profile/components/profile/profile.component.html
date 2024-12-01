@@ -1,65 +1,131 @@
 <div class="profile-container">
   <div class="profile-header">
-    <img [src]="profileForm.get('profileImageUrl')?.value || 'https://i.pinimg.com/originals/c7/f5/78/c7f578937fdc07702eacff129b4107f7.png'" alt="Profile Avatar" class="profile-avatar" />
+    <div class="avatar-container">
+      <img
+        [src]="profileForm.get('profileImageUrl')?.value || 'https://i.pinimg.com/originals/c7/f5/78/c7f578937fdc07702eacff129b4107f7.png'"
+        alt="Profile Avatar"
+        class="profile-avatar"
+      />
+      <label class="edit-icon" (click)="fileInput.click()">
+        <i class="material-icons">edit</i>
+        <input type="file" #fileInput (change)="onSelect($event)" hidden />
+      </label>
+    </div>
     <div class="profile-info">
-      <h2 class="profile-name">{{ profile?.firstName }} {{ profile?.lastName }}</h2>
-      <p class="profile-role">{{ profile?.biography }}</p>
-      <div class="profile-buttons">
-        <!-- Add buttons if needed -->
-      </div>
+      <h1 class="profile-name">{{ profile?.firstName }} {{ profile?.lastName }}</h1>
+      <p class="profile-role">{{ profile?.biography || 'No biography added yet.' }}</p>
     </div>
   </div>
 
-  <div class="tabs">
-    <span class="tab active">Edit Profile</span>
-  </div>
-
   <div class="edit-profile-section">
-    <h3>Edit Profile</h3>
-    <p>Update profile picture, full name, username, biography, contact information, and recent activity or posts</p>
-    <form class="edit-form" [formGroup]="profileForm" (ngSubmit)="updateProfile()">
-      <ngx-dropzone (change)="onSelect($event)">
-        <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
-        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-        </ngx-dropzone-preview>
-      </ngx-dropzone>
+    <h2>Edit Profile</h2>
+    <p>Update your profile details and picture below.</p>
+    <form class="edit-form" [formGroup]="profileForm" (ngSubmit)="onUpdate()">
+      <div class="form-group file-upload-group">
+        <label class="custom-file-upload">
+          <i class="material-icons">cloud_upload</i>
+          Upload Picture
+          <input type="file" (change)="onSelect($event)" />
+        </label>
+        <div *ngIf="files?.length" class="file-preview">
+          <i class="material-icons preview-icon">image</i>
+          <span class="file-name">{{ files[0]?.name }}</span>
+        </div>
+      </div>
 
-      <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
-        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-      </ngx-dropzone-image-preview>
- <input type="button" value="Upload" (click)="onUpdate()" />
-      <label>Avatar URL</label>
-      <input type="text" placeholder="Avatar URL" formControlName="profileImageUrl" />
 
-      <label>Biography</label>
-      <textarea placeholder="Biography" formControlName="biography"></textarea>
 
-      <label>First Name</label>
-      <input type="text" placeholder="First Name" formControlName="firstName" />
+    <div class="form-group">
+        <label for="biography">Biography</label>
+        <textarea
+          id="biography"
+          placeholder="Write something about yourself"
+          formControlName="biography"
+        ></textarea>
+      </div>
 
-      <label>Last Name</label>
-      <input type="text" placeholder="Last Name" formControlName="lastName" />
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          id="firstName"
+          type="text"
+          placeholder="Enter your first name"
+          formControlName="firstName"
+        />
+      </div>
 
-      <label>Email</label>
-      <input type="email" placeholder="Email" formControlName="email" />
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          id="lastName"
+          type="text"
+          placeholder="Enter your last name"
+          formControlName="lastName"
+        />
+      </div>
 
-      <label>Phone</label>
-      <input type="text" placeholder="Phone" formControlName="phone" />
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          placeholder="Enter your email"
+          formControlName="email"
+        />
+      </div>
 
-      <label>Street</label>
-      <input type="text" placeholder="Street" formControlName="street" />
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input
+          id="phone"
+          type="text"
+          placeholder="Enter your phone number"
+          formControlName="phone"
+        />
+      </div>
 
-      <label>Number</label>
-      <input type="text" placeholder="Number" formControlName="number" />
+      <div class="form-group">
+        <label for="street">Street</label>
+        <input
+          id="street"
+          type="text"
+          placeholder="Enter your street"
+          formControlName="street"
+        />
+      </div>
 
-      <label>City</label>
-      <input type="text" placeholder="City" formControlName="city" />
+      <div class="form-group">
+        <label for="number">Number</label>
+        <input
+          id="number"
+          type="text"
+          placeholder="Enter your house number"
+          formControlName="number"
+        />
+      </div>
 
-      <label>Country</label>
-      <input type="text" placeholder="Country" formControlName="country" />
+      <div class="form-group">
+        <label for="city">City</label>
+        <input
+          id="city"
+          type="text"
+          placeholder="Enter your city"
+          formControlName="city"
+        />
+      </div>
 
-      <button type="submit" class="update-btn">Update</button>
+      <div class="form-group">
+        <label for="country">Country</label>
+        <input
+          id="country"
+          type="text"
+          placeholder="Enter your country"
+          formControlName="country"
+        />
+      </div>
+
+
     </form>
+    <button type="submit" class="update-btn">Update Profile</button>
   </div>
 </div>

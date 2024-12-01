@@ -109,7 +109,6 @@ export class ProfileComponent implements OnInit {
 
       this.profileService.uploadImg(data).subscribe({
         next: (result: any) => {
-          console.log(result);
           this.profileForm.patchValue({ profileImageUrl: result.url });
           this.updateProfile();
         },
@@ -145,7 +144,25 @@ export class ProfileComponent implements OnInit {
   }
 
   onSelect(event: any): void {
-    this.files.push(...event.addedFiles);
+    this.files.push(...event.target.files);
+    if (this.files.length > 0) {
+      const filedata = this.files[0];
+      const data = new FormData();
+      data.append('file', filedata);
+      data.append('upload_preset', 'urlcloudinaryprofile');
+      data.append('cloud_name', 'du35rv7mm');
+
+      this.profileService.uploadImg(data).subscribe({
+        next: (result: any) => {
+          this.profileForm.patchValue({ profileImageUrl: result.url });
+          this.updateProfile();
+        },
+        error: (error) => {
+          console.error('Error uploading image:', error);
+          this.snackBar.open('Error uploading image', 'Close', { duration: 3000 });
+        }
+      });
+    }
   }
 
   onRemove(event: any): void {
