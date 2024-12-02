@@ -9,7 +9,7 @@
 
 .trip-mat-card-title {
   font-size: 1.6rem;
-  color: #FFC500FF;
+  color: #80E35FFF;
   text-align: center;
   margin-bottom: 16px;
 }
@@ -95,7 +95,7 @@ button {
   position: relative;
   padding: 10px 20px;
   border-radius: 7px;
-  border: 1px solid rgb(255, 251, 0);
+  border: 1px solid rgb(128, 227, 95);
   font-size: 14px;
   text-transform: uppercase;
   font-weight: 600;
@@ -110,8 +110,8 @@ button {
 }
 
 button:hover {
-  background: rgb(255, 197, 0);
-  box-shadow: 0 0 30px 5px rgba(255, 232, 0, 0.81);
+  background: rgb(128, 227, 95);
+  box-shadow: 0 0 30px 5px rgb(0, 218, 88);
   -webkit-transition: all 0.2s ease-out;
   -moz-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;

@@ -91,12 +91,12 @@ body {
 }
 
 .btn.primary {
-  background-color: #ffeb00;
+  background-color: #80E35FFF;
   color: #000000;
 }
 
 .btn.primary:hover {
-  background-color: #ffeb00;
+  background-color: #00da58;
 }
 
 .btn.secondary {

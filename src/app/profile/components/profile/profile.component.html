@@ -2,7 +2,7 @@
   <div class="profile-header">
     <div class="avatar-container">
       <img
-        [src]="profileForm.get('profileImageUrl')?.value || 'https://i.pinimg.com/originals/c7/f5/78/c7f578937fdc07702eacff129b4107f7.png'"
+        [src]="profileForm.get('profileImageUrl')?.value || 'https://i.pinimg.com/736x/99/54/b9/9954b9690260d251ad2f5358514ab747.jpg'"
         alt="Profile Avatar"
         class="profile-avatar"
       />
@@ -21,17 +21,7 @@
     <h2>Edit Profile</h2>
     <p>Update your profile details and picture below.</p>
     <form class="edit-form" [formGroup]="profileForm" (ngSubmit)="onUpdate()">
-      <div class="form-group file-upload-group">
-        <label class="custom-file-upload">
-          <i class="material-icons">cloud_upload</i>
-          Upload Picture
-          <input type="file" (change)="onSelect($event)" />
-        </label>
-        <div *ngIf="files?.length" class="file-preview">
-          <i class="material-icons preview-icon">image</i>
-          <span class="file-name">{{ files[0]?.name }}</span>
-        </div>
-      </div>
+
 
 
 
@@ -39,6 +29,7 @@
         <label for="biography">Biography</label>
         <textarea
           id="biography"
+          type="text"
           placeholder="Write something about yourself"
           formControlName="biography"
         ></textarea>
@@ -95,16 +86,6 @@
       </div>
 
       <div class="form-group">
-        <label for="number">Number</label>
-        <input
-          id="number"
-          type="text"
-          placeholder="Enter your house number"
-          formControlName="number"
-        />
-      </div>
-
-      <div class="form-group">
         <label for="city">City</label>
         <input
           id="city"
@@ -124,8 +105,7 @@
         />
       </div>
 
-
+      <button type="submit" class="update-btn">Update Profile</button>
     </form>
-    <button type="submit" class="update-btn">Update Profile</button>
   </div>
 </div>

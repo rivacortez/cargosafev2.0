@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {RouterLink, RouterOutlet} from "@angular/router";
+import {Router, RouterLink, RouterOutlet} from "@angular/router";
 import {AuthenticationService} from "../../iam/services/authentication.service";
 import {ProfileService} from "../../profile/service/profile.service";
 
@@ -27,7 +27,8 @@ export class SidebarCompanyComponent implements OnInit {
   }
   constructor(
     private authenticationService: AuthenticationService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private router: Router
   ) {}
 
   private loadUserProfile(): void {
@@ -109,5 +110,10 @@ export class SidebarCompanyComponent implements OnInit {
       localStorage.setItem('selected-theme', getCurrentTheme());
       localStorage.setItem('selected-icon', getCurrentIcon());
     });
+  }
+
+  onLogout(): void {
+    this.authenticationService.signOut();
+    this.router.navigate(['/sign-in']);
   }
 }

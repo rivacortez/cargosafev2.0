@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../services/authentication.service";
 import {SignInRequest} from "../../model/sign-in.request";
@@ -9,6 +9,7 @@ import {MatButton} from "@angular/material/button";
 import {BaseFormComponent} from "../../../../shared/components/base-form.component";
 import {NgIf} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
+import {SignUpRequest} from "../../model/sign-up.request";
 
 /**
  * Sign in component
@@ -33,55 +34,44 @@ import {Router, RouterLink} from "@angular/router";
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
 })
-export class SignInComponent extends BaseFormComponent implements OnInit{
-  form!: FormGroup;
-  submitted = false;
+export class SignInComponent  implements OnInit {
+  signInForm!: FormGroup;
+  submittedSignIn = false;
 
+  @ViewChild('container', { static: true }) container!: ElementRef<HTMLElement>;
+  constructor(
+    private builder: FormBuilder,
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) {}
 
-  /**
-   * Constructor
-   * @param builder {@link FormBuilder} instance
-   * @param authenticationService {@link AuthenticationService} instance
-   * @param router
-   */
-  constructor(private builder: FormBuilder, private authenticationService: AuthenticationService,private router: Router) {
-    super();
+  ngOnInit(): void {
+    this.signInForm = this.builder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+
+    const signUpBtn = document.querySelector("#sign-up-btn") as HTMLButtonElement;
+    signUpBtn.addEventListener("click", () => {
+      this.router.navigate(['/sign-up']);
+    });
   }
-
-  /**
-   * On Init Event Handler
-   * <p>
-   *  Initialize the component
-   * </p>
-   */
-    ngOnInit(): void {
-      this.form = this.builder.group({
-        username: ['', Validators.required],
-        password: ['', Validators.required]
-      });
-    }
-
-    /**
-     * On Submit Event Handler
-     * <p>
-     *  Submit the form data to the server
-     * </p>
-     */
-    onSubmit(): void {
-      if (this.form.invalid) return;
-      const { username, password } = this.form.value;
-      const signInRequest = new SignInRequest(username, password);
-      this.authenticationService.signIn(signInRequest).subscribe({
-        next: (response) => {
-          console.log('SignInResponse:', response); // Debugging log
-          this.submitted = true;
-          localStorage.setItem('token', response.token);
-          this.authenticationService.updateSignedInUserRoles(response.roles);
-          // Navigation is handled in the signIn method of AuthenticationService
-        },
-        error: (error) => {
-          console.error('Error signing in', error);
-        }
-      });
-    }
+  onSignUp(): void {
+    this.router.navigate(['/sign-up']);
+  }
+  onSubmitSignIn(): void {
+    if (this.signInForm.invalid) return;
+    const { username, password } = this.signInForm.value;
+    const signInRequest = new SignInRequest(username, password);
+    this.authenticationService.signIn(signInRequest).subscribe({
+      next: (response) => {
+        this.submittedSignIn = true;
+        localStorage.setItem('token', response.token);
+        this.authenticationService.updateSignedInUserRoles(response.roles);
+      },
+      error: (error) => {
+        console.error('Error signing in', error);
+      }
+    });
+  }
 }

@@ -60,13 +60,13 @@ export class ProfileComponent implements OnInit {
   ) {
     this.profileForm = this.formBuilder.group({
       profileImageUrl: [''],
-      biography: [''],
+      biography: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
       street: ['', Validators.required],
-      number: ['', Validators.required],
+        number: ['', Validators.required],
       city: ['', Validators.required],
       country: ['', Validators.required]
     });

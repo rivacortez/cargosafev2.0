@@ -18,7 +18,7 @@ export const authenticationGuard: CanActivateFn = (route, state) => {
   return authenticationService.isSignedIn.pipe(take(1), map(isSignedIn => {
     if (isSignedIn) return true;
     else {
-      router.navigate(['/sign-in']).then();
+      router.navigate(['/sign-up']).then();
       return false;
     }
   }));

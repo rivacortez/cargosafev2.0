@@ -1,4 +1,6 @@
-
-<app-sidebar-company
-></app-sidebar-company>
-
+<ng-container *ngIf="isSignedIn | async; else authContent">
+  <app-sidebar-company></app-sidebar-company>
+</ng-container>
+<ng-template #authContent>
+  <router-outlet></router-outlet>
+</ng-template>

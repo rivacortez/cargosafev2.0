@@ -119,7 +119,7 @@ export class AuthenticationService {
     this.signedInUserId.next(0);
     this.signedInUsername.next('');
     localStorage.removeItem('token');
-    this.router.navigate(['/sign-in']).then();
+    this.router.navigate(['/sign-in-and-sign-up']).then();
   }
   updateSignedInUserRoles(roles: string[]): void {
     this.signedInUserRoles.next(roles);

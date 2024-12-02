@@ -2,7 +2,7 @@
 .icon-back {
   font-size: 24px;
   cursor: pointer;
-  color: #fffe55;
+  color: #80E35FFF;
   margin-bottom: 20px;
 }
 
@@ -62,7 +62,7 @@
 }
 
 .btn-save {
-  background-color: #fffe55;
+  background-color: #00da58;
   color: #000000;
   padding: 10px 15px;
   border: none;
@@ -79,7 +79,7 @@
   grid-template-areas: "bt-1 bt-2 bt-3"
     "bt-4 bt-5 bt-6";
   position: relative;
-  perspective: 800;
+  perspective: 800px;
   padding: 0;
   width: 135px;
   height: 47px;
@@ -100,7 +100,7 @@ button {
   position: relative;
   padding: 10px 20px;
   border-radius: 7px;
-  border: 1px solid rgb(255, 252, 0);
+  border: 1px solid rgb(0, 218, 88);
   font-size: 14px;
   text-transform: uppercase;
   font-weight: 600;
@@ -115,8 +115,8 @@ button {
 }
 
 button:hover {
-  background: rgb(248, 248, 14);
-  box-shadow: 0 0 30px 5px rgb(255, 255, 127);
+  background: rgb(128, 227, 95);
+  box-shadow: 0 0 30px 5px rgb(128, 227, 95);
   -webkit-transition: all 0.2s ease-out;
   -moz-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
@@ -174,7 +174,7 @@ button:active {
   font-size: 30px;
   background: #0e0d0b;
   padding: 20px;
-  color: #F8F80EFF;
+  color: #80E35FFF;
   cursor: pointer;
   transition: color 0.3s ease, transform 0.3s ease;
 }
@@ -197,13 +197,13 @@ button:active {
   left: 10px;
   top: 20px;
   font-size: 30px;
-  color: #F8F80EFF;
+  color: #80E35FFF;
   cursor: pointer;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .icon-back:hover {
-  color: #F8F80EFF;
+  color: #00da58;
   transform: translateX(-2px);
 }
 
@@ -236,7 +236,7 @@ button:active {
 }
 
 .btn-back {
-  background-color: #F8F80EFF;
+  background-color: #00da58;
   color: white;
   padding: 10px 15px;
   border: none;

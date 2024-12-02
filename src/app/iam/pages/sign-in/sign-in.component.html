@@ -1,38 +1,45 @@
-<div class="auth-container">
-  <div class="auth-card">
-    <h1 class="auth-title">Welcome to CargoSafe</h1>
-    <img src="assets/images/cargosafe-logo.png" alt="CargoSafe Logo" class="auth-logo">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="auth-input-group">
-        <label for="username">Email</label>
-        <input
-          id="username"
-          type="username"
-          placeholder="Enter your username"
-          formControlName="username"
-          class="auth-input"
-        />
-        <span *ngIf="form.get('username')?.invalid && form.get('username')?.touched" class="auth-error">
-          Please enter a valid username.
-        </span>
+<!-- sign-in.component.html -->
+<div #container class="container">
+  <div class="forms-container">
+    <div class="signin-signup">
+      <form [formGroup]="signInForm" (ngSubmit)="onSubmitSignIn()" class="sign-in-form">
+        <h2 class="title">Login</h2>
+        <div class="input-field">
+          <i class="fas fa-user"></i>
+          <input type="text" formControlName="username" placeholder="Username" required />
+        </div>
+        <div class="input-field">
+          <i class="fas fa-lock"></i>
+          <input type="password" formControlName="password" placeholder="Password" required />
+        </div>
+        <input type="submit" value="Login" class="btn solid" />
+        <p class="social-text">Or Login With</p>
+        <div class="social-media">
+          <a href="#" class="social-icon">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-google"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+        <button class="btn transparent" (click)="onSignUp()">Register</button>
+      </form>
+    </div>
+  </div>
+  <div class="panels-container">
+    <div class="panel left-panel">
+      <div class="content">
+        <h3>Don't have an account yet?</h3>
+        <p></p>
+        <button class="btn transparent" (click)="onSignUp()">Register</button>
       </div>
-
-      <div class="auth-input-group">
-        <label for="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          placeholder="Enter your password"
-          formControlName="password"
-          class="auth-input"
-        />
-        <span *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="auth-error">
-          Password must be at least 6 characters.
-        </span>
-      </div>
-
-      <button type="submit" class="auth-button">Sign In</button>
-      <a class="auth-link" routerLink="/sign-up">Don't have an account? Sign Up</a>
-    </form>
+      <img src="https://i.ibb.co/tL3DpDz/vecteezy-3d-delivery-man-character-pointing-to-the-left-pose-with-36876824.png" class="image" alt="" />
+    </div>
   </div>
 </div>

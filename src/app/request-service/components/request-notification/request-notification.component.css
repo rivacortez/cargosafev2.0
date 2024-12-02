@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #f1f500;
+  --primary-color: #80E35FFF;
   --background-color: #0e0d0b;
   --text-color: #ff0000;
 }
@@ -54,7 +54,7 @@
 }
 
 .view-more-btn:hover {
-  background-color: #e6e600;
+  background-color: #00da58;
 }
 
 .delete-btn {

@@ -38,7 +38,7 @@ import {SidebarCompanyComponent} from "./public/sidebar-company/sidebar-company.
 
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home-company', pathMatch: 'full' },
+  { path: '', redirectTo: 'sign-up', pathMatch: 'full' },
   { path: 'home-company', component: HomeCompanyComponent, canActivate: [authenticationGuard] },
 
   // IAM

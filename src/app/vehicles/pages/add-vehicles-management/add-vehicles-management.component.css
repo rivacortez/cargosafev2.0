@@ -31,11 +31,11 @@
 }
 
 .mat-elegant-field.mat-form-field-appearance-outline .mat-form-field-outline {
-  color: #F1F500;
+  color: #00da58;
 }
 
 .mat-elegant-field:hover .mat-input-element {
-  border-color: #F1F500;
+  border-color: #00da58;
 }
 
 .mat-elegant-field .mat-form-field-label {
@@ -51,7 +51,7 @@
 }
 
 .btn-submit {
-  background-color: #F1F500;
+  background-color: #00da58;
   color: #333333;
   font-weight: bold;
   font-size: 1.1rem;
@@ -61,7 +61,7 @@
 }
 
 .btn-submit:hover {
-  background-color: #e5db00;
+  background-color: #80e35f;
 }
 
 .btn-cancel {

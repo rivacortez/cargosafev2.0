@@ -237,18 +237,18 @@ textarea {
 
 @media (max-width: 480px) {
   .avatar-container {
-    width: 100px; /* Reduce el tamaño del avatar */
+    width: 100px;
     height: 100px;
   }
 
   .edit-icon {
-    width: 25px; /* Tamaño menor del ícono */
+    width: 25px;
     height: 25px;
-    transform: translate(40%, 40%); /* Ajuste fino para móviles */
+    transform: translate(40%, 40%);
   }
 
   .edit-icon i {
-    font-size: 16px; /* Tamaño menor del ícono */
+    font-size: 16px;
   }
 
 }

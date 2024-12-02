@@ -2,13 +2,13 @@
 
 
 .add-vehicle-button {
-  background-color: #ffeb3b;
+  background-color: #00da58;
   color: #000;
   margin-bottom: 20px;
 }
 
 .add-vehicle-button:hover {
-  background-color: #ffd700;
+  background-color: #00da58;
 }
 
 .vehicle-table-card {
@@ -21,7 +21,7 @@
 
 .vehicle-card-title {
   font-size: 1.5rem;
-  color: #8d8000;
+  color: #00da58;
   text-align: center;
   margin-bottom: 10px;
 }
@@ -55,7 +55,7 @@
 }
 
 .mat-icon-button {
-  color: #ffeb3b;
+  color: #00da58;
 }
 
 .vehicle-photo {

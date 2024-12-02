@@ -29,7 +29,8 @@ export class ProfileService  extends BaseService<ProfileEntity> {
           phone: response.phone,
           city: response.city,
           profileImageUrl: response.profileImageUrl,
-          country: response.country
+          country: response.country,
+          biography: response.biography
         });
       })
     );

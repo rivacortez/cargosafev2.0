@@ -1,86 +1,61 @@
-<section class="auth-container">
-  <article class="auth-card">
-    <header>
-      <h1 class="auth-title">Welcome to CargoSafe</h1>
-      <img src="assets/images/cargosafe-logo.png" alt="CargoSafe Logo" class="auth-logo">
-    </header>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-
-      <div class="auth-input-group">
-        <label for="username">Username</label>
-        <input
-          id="username"
-          type="text"
-          placeholder="Enter your username"
-          formControlName="username"
-          class="auth-input"
-          aria-describedby="usernameError"
-        />
-        <p
-          *ngIf="form.get('username')?.invalid && form.get('username')?.touched"
-          id="usernameError"
-          class="auth-error"
-        >
-          Please enter a valid username.
-        </p>
-      </div>
-
-      <div class="auth-input-group">
-        <label for="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          placeholder="Enter your password"
-          formControlName="password"
-          class="auth-input"
-          aria-describedby="passwordError"
-        />
-        <p
-          *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
-          id="passwordError"
-          class="auth-error"
-        >
-          Password must be at least 6 characters.
-        </p>
-      </div>
-
-      <div class="auth-input-group">
-        <label>Roles</label>
-        <div class="role-selection">
-          <label class="role-radio">
-            <input
-              type="radio"
-              formControlName="roles"
-              value="ROLE_COMPANY"
-            />
-            Company
-          </label>
-          <label class="role-radio">
-            <input
-              type="radio"
-              formControlName="roles"
-              value="ROLE_ENTREPRENEUR"
-            />
-            Entrepreneur
-          </label>
+<!-- sign-up.component.html -->
+<div #container class="container">
+  <div class="forms-container">
+    <div class="signin-signup">
+      <form [formGroup]="signUpForm" (ngSubmit)="onSubmitSignUp()" class="sign-up-form">
+        <h2 class="title">Register</h2>
+        <div class="input-field">
+          <i class="fas fa-user"></i>
+          <input type="text" formControlName="username" placeholder="Username" required />
         </div>
-        <p
-          *ngIf="form.get('roles')?.invalid && form.get('roles')?.touched"
-          id="rolesError"
-          class="auth-error"
-        >
-          Please select a role.
-        </p>
+        <div class="input-field">
+          <i class="fas fa-lock"></i>
+          <input type="password" formControlName="password" placeholder="Password" required />
+        </div>
+        <div class="auth-input-group">
+          <label>Roles</label>
+          <div class="role-selection">
+            <label class="role-radio">
+              <input type="radio" formControlName="roles" value="ROLE_COMPANY" />
+              Company
+            </label>
+            <label class="role-radio">
+              <input type="radio" formControlName="roles" value="ROLE_ENTREPRENEUR" />
+              Entrepreneur
+            </label>
+          </div>
+          <p *ngIf="signUpForm.get('roles')?.invalid && signUpForm.get('roles')?.touched" id="rolesError" class="auth-error">
+            Please select a role.
+          </p>
+        </div>
+        <input type="submit" class="btn" value="Register" />
+        <p class="social-text">Or Register With</p>
+        <div class="social-media">
+          <a href="#" class="social-icon">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-google"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+        <button class="btn transparent" (click)="onSignIn()">Login</button>
+      </form>
+    </div>
+  </div>
+  <div class="panels-container">
+    <div class="panel left-panel">
+      <div class="content">
+        <h3>Already have an account?</h3>
+        <p></p>
+        <button class="btn transparent" (click)="onSignIn()">Login</button>
       </div>
-
-      <div class="auth-actions">
-        <button type="submit" class="auth-button" [disabled]="form.invalid">
-          Sign Up
-        </button>
-        <p>
-          <a class="auth-link" routerLink="/sign-in">Already have an account? Sign In</a>
-        </p>
-      </div>
-    </form>
-  </article>
-</section>
+      <img src="https://i.ibb.co/1QXKhJs/vecteezy-3d-delivery-man-character-presenting-to-the-right-pose-with-36876801.png" class="image" alt="" />
+    </div>
+  </div>
+</div>

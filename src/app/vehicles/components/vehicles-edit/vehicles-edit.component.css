@@ -43,12 +43,12 @@ button:last-child {
 
 
 .yellow-button {
-  background-color: #f1f500;
+  background-color: #00da58;
   color: #0e0d0b;
 }
 
 .yellow-button:hover {
-  background-color: #d9db00;
+  background-color: #00da58;
 }
 
 @media (max-width: 600px) {
