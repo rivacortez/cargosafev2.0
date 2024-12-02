@@ -8,7 +8,7 @@ import {StatusEntity} from "../model/status.entity";
   providedIn: 'root'
 })
 export class StatusService {
-  private basePath = `${environment.serverBasePath}/requestServices/status`;
+  private basePath = `${environment.serverBasePath}/service-requests/status`;
 
   constructor(private http: HttpClient) {}
 

@@ -12,7 +12,7 @@ export class RequestService extends BaseService<RequestServiceEntity> {
   constructor(http: HttpClient, private notificationService: NotificationService) {
     super();
     this.http = http;
-    this.resourceEndpoint = '/requestServices';
+    this.resourceEndpoint = '/service-requests';
   }
   getAllRequests(): Observable<RequestServiceEntity[]> {
     return this.http.get<RequestServiceEntity[]>(this.resourcePath()).pipe(
