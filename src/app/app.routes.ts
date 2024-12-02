@@ -5,9 +5,6 @@ import { DriverManagementComponent } from './drivers/pages/driver-management/dri
 import { ListRequestTripComponent } from './request-service/components/list-request-trip/list-request-trip.component';
 import { VehiclesManagementComponent } from './vehicles/pages/vehicles-management/vehicles-management.component';
 import { StatisticsComponent } from './company/components/statistics/statistics.component';
-import {
-  ToolbarEntrepreneurContentComponent
-} from "./public/components/toolbar-entrepreneur-content/toolbar-entrepreneur-content.component";
 import {RequestComponent} from "./request-service/components/request/request.component";
 import {
   DriversEditComponent
@@ -61,7 +58,6 @@ export const routes: Routes = [
   { path: 'stadistics', component: StatisticsComponent, canActivate: [authenticationGuard] },
 
   // Entrepreneur
-  { path: 'a', component: ToolbarEntrepreneurContentComponent },
   { path: 'request/trip/new', component: RequestComponent },
   { path: 'list-request-trip', component: ListRequestTripComponent },
   { path: 'list-request-history', component: ListRequestStatusComponent },

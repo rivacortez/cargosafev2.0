@@ -2,10 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {PaymentEntity} from "../../model/payment.entity";
 import {PaymentService} from "../../service/payment.service";
-import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
-import {
-  ToolbarEntrepreneurContentComponent
-} from "../../../public/components/toolbar-entrepreneur-content/toolbar-entrepreneur-content.component";
 import {CurrencyPipe, DatePipe, NgIf} from "@angular/common";
 import {TripEntity} from "../../../trip/model/trip.entity";
 import {TripService} from "../../../trip/service/trip.service";
@@ -17,12 +13,10 @@ import {VehiclesService} from "../../../vehicles/services/vehicles.service";
   standalone: true,
   imports: [
     FormsModule,
-    ToolbarContentComponent,
-
     NgIf,
     DatePipe,
     CurrencyPipe,
-    ToolbarEntrepreneurContentComponent
+
   ],
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.css'

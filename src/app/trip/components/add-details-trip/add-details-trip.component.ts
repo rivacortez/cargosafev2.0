@@ -21,7 +21,6 @@ import {
   MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
   MatTable
 } from "@angular/material/table";
-import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 
@@ -47,7 +46,6 @@ import {MatSort} from "@angular/material/sort";
     MatHeaderRowDef,
     MatRowDef,
     MatRow,
-    ToolbarContentComponent,
     MatButton,
     MatCardHeader,
     MatCardContent,

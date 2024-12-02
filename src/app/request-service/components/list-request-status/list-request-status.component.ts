@@ -15,13 +15,9 @@ import {MatPaginator} from "@angular/material/paginator";
 import {RequestServiceEntity} from "../../model/request-service.entity";
 import {RequestService} from "../../service/request.service";
 import {MatCard, MatCardTitle} from "@angular/material/card";
-import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
 import {DatePipe, NgForOf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
-import {
-  ToolbarEntrepreneurContentComponent
-} from "../../../public/components/toolbar-entrepreneur-content/toolbar-entrepreneur-content.component";
 import {StatusEntity} from "../../model/status.entity";
 import {StatusService} from "../../service/status.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -49,12 +45,11 @@ import {MatSelect} from "@angular/material/select";
     MatCardTitle,
     MatCard,
     MatSort,
-    ToolbarContentComponent,
     DatePipe,
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
-    ToolbarEntrepreneurContentComponent,
+
     MatFormField,
     MatOption,
     MatSelect,

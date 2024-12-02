@@ -7,7 +7,6 @@ import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
 import {NgIf} from "@angular/common";
 import {MatIconModule} from "@angular/material/icon";
-import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
 import {MatColumnDef, MatTable} from "@angular/material/table";
 import {
   MAT_DIALOG_DATA,
@@ -34,7 +33,6 @@ import {
     MatLabel,
     MatError,
     MatIconModule,
-    ToolbarContentComponent,
     MatTable,
     MatColumnDef,
     MatDialogTitle,

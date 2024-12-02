@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatGridList, MatGridTile } from "@angular/material/grid-list";
 import { Chart, registerables } from 'chart.js';
-import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
 import {TripService} from "../../../trip/service/trip.service";
 import {TripEntity} from "../../../trip/model/trip.entity";
 
@@ -11,7 +10,7 @@ import {TripEntity} from "../../../trip/model/trip.entity";
   imports: [
     MatGridList,
     MatGridTile,
-    ToolbarContentComponent
+
   ],
   templateUrl: './statistics.component.html',
   styleUrl: './statistics.component.css'

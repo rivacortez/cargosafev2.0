@@ -21,9 +21,7 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
 import {MatInput} from "@angular/material/input";
 import {MatCard, MatCardTitle} from "@angular/material/card";
-import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
 import {MatDialog} from "@angular/material/dialog";
-import {VehiclesEntity} from "../../../vehicles/model/vehicles.entity";
 
 @Component({
   selector: 'app-driver-management',
@@ -54,7 +52,7 @@ import {VehiclesEntity} from "../../../vehicles/model/vehicles.entity";
     MatLabel,
     MatCardTitle,
     MatCard,
-    ToolbarContentComponent
+
   ],
   templateUrl: './driver-management.component.html',
   styleUrl: './driver-management.component.css'

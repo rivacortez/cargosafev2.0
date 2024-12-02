@@ -4,9 +4,6 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
 
-import {
-  ToolbarEntrepreneurContentComponent
-} from "../../../public/components/toolbar-entrepreneur-content/toolbar-entrepreneur-content.component";
 import {RequestService} from "../../service/request.service";
 import {RequestServiceEntity} from "../../model/request-service.entity";
 
@@ -15,7 +12,7 @@ import {RequestServiceEntity} from "../../model/request-service.entity";
   standalone: true,
   imports: [
     AddRequestTripComponent,
-    ToolbarEntrepreneurContentComponent
+
   ],
   templateUrl: './request.component.html',
   styleUrl: './request.component.css'

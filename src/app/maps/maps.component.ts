@@ -4,9 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { DecimalPipe, NgIf, NgForOf } from '@angular/common';
 import {LocationDataEntity} from './model/location-data.entity';
-import {
-  ToolbarEntrepreneurContentComponent
-} from "../public/components/toolbar-entrepreneur-content/toolbar-entrepreneur-content.component";
+
 
 @Component({
   selector: 'app-maps',

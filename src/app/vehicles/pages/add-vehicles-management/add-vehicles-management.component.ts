@@ -3,7 +3,6 @@ import {FormsModule, NgForm} from "@angular/forms";
 import {MatFormField, MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
 import {VehiclesEntity} from "../../model/vehicles.entity";
-import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
 import {VehiclesService} from "../../services/vehicles.service";
 import {MatLabel} from "@angular/material/form-field";
 import {
@@ -20,7 +19,7 @@ import {MatDialog} from "@angular/material/dialog";
     MatInput,
     MatFormField,
     MatButton,
-    ToolbarContentComponent,
+
     MatLabel
   ],
   templateUrl: './add-vehicles-management.component.html',

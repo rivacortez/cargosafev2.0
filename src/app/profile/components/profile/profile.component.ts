@@ -8,9 +8,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatButton} from "@angular/material/button";
 import {MatInput} from "@angular/material/input";
-import {
-  ToolbarEntrepreneurContentComponent
-} from "../../../public/components/toolbar-entrepreneur-content/toolbar-entrepreneur-content.component";
+
 import {Router} from "@angular/router";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
 import {AuthenticationService} from "../../../iam/services/authentication.service";
@@ -31,7 +29,6 @@ import {NgxDropzoneModule} from "ngx-dropzone";
     MatButton,
     MatInput,
     MatLabel,
-    ToolbarEntrepreneurContentComponent,
     MatCardSubtitle,
     MatTabGroup,
     MatTab,

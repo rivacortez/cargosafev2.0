@@ -2,11 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {DatePipe, NgForOf} from "@angular/common";
 import {TripEntity} from "../../model/trip.entity";
 import {TripService} from "../../service/trip.service";
-import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {
-  ToolbarEntrepreneurContentComponent
-} from "../../../public/components/toolbar-entrepreneur-content/toolbar-entrepreneur-content.component";
 import {Router} from "@angular/router";
 import {MatIcon} from "@angular/material/icon";
 

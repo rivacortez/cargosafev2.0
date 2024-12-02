@@ -19,7 +19,6 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
 import {MatInput} from "@angular/material/input";
 import {MatCard, MatCardTitle} from "@angular/material/card";
-import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
 import {VehiclesEdit} from "../../components/vehicles-edit/vehicles-edt.component";
 import {MatDialog} from "@angular/material/dialog";
 
@@ -52,7 +51,7 @@ import {MatDialog} from "@angular/material/dialog";
         MatLabel,
         MatCardTitle,
         MatCard,
-        ToolbarContentComponent
+
     ],
   templateUrl: './vehicles-management.component.html',
   styleUrl: './vehicles-management.component.css'

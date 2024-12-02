@@ -24,9 +24,6 @@ import {
   DialogSuccessfullyComponent
 } from "../../../public/components/dialogs/dialog-successfully/dialog-successfully.component";
 import {RequestServiceEntity} from "../../model/request-service.entity";
-import {
-  ToolbarEntrepreneurContentComponent
-} from "../../../public/components/toolbar-entrepreneur-content/toolbar-entrepreneur-content.component";
 import {Router} from "@angular/router";
 import {MapsComponent} from "../../../maps/maps.component";
 import {HttpClient} from "@angular/common/http";
@@ -54,7 +51,7 @@ import {LocationDataEntity} from "../../../maps/model/location-data.entity";
     MatSelect,
     MatOption,
     NgForOf,
-    ToolbarEntrepreneurContentComponent,
+
     MapsComponent,
     DecimalPipe
   ],

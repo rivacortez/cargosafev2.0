@@ -20,7 +20,6 @@ import {DriverService} from "../../../drivers/services/driver.service";
 import {VehiclesService} from "../../../vehicles/services/vehicles.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatNativeDateModule} from "@angular/material/core";
-import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
 import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
 import {MatIcon} from "@angular/material/icon";
 
@@ -44,7 +43,6 @@ import {MatIcon} from "@angular/material/icon";
     MatLabel,
     MatDatepickerModule,
     MatNativeDateModule,
-    ToolbarContentComponent,
     MatCard,
     MatCardHeader,
     MatCardContent,

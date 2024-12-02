@@ -20,14 +20,10 @@ import {DatePipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {TripEntity} from "../../../trip/model/trip.entity";
 import {TripService} from "../../../trip/service/trip.service";
 import {MatButton, MatIconButton} from "@angular/material/button";
-import {
-  ToolbarEntrepreneurContentComponent
-} from "../../../public/components/toolbar-entrepreneur-content/toolbar-entrepreneur-content.component";
 import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
 import {FormsModule} from "@angular/forms";
 import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
-import {ToolbarContentComponent} from "../../../public/components/toolbar-content/toolbar-content.component";
 import {RequestServiceEntity} from "../../model/request-service.entity";
 import {RequestService} from "../../service/request.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -57,7 +53,6 @@ import {StatusEntity} from "../../model/status.entity";
     MatPaginator,
     MatSort,
     MatButton,
-    ToolbarEntrepreneurContentComponent,
     MatCard,
     MatCardHeader,
     MatCardContent,
@@ -68,7 +63,7 @@ import {StatusEntity} from "../../model/status.entity";
     MatIconButton,
     MatCardTitle,
     DatePipe,
-    ToolbarContentComponent,
+
     MatSelect,
     MatOption,
     NgForOf
