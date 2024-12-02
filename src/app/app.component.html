@@ -1,5 +1,10 @@
 <ng-container *ngIf="isSignedIn | async; else authContent">
-  <app-sidebar-company></app-sidebar-company>
+  <ng-container *ngIf="(userRole | async)?.includes('ROLE_COMPANY'); else entrepreneurSidebar">
+    <app-sidebar-company></app-sidebar-company>
+  </ng-container>
+  <ng-template #entrepreneurSidebar>
+    <app-sidebar-entrepreneur></app-sidebar-entrepreneur>
+  </ng-template>
 </ng-container>
 <ng-template #authContent>
   <router-outlet></router-outlet>

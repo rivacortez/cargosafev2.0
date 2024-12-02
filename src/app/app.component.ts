@@ -5,11 +5,12 @@ import {ToolbarContentComponent} from "./public/components/toolbar-content/toolb
 import {SidebarCompanyComponent} from "./public/sidebar-company/sidebar-company.component";
 import {AuthenticationService} from "./iam/services/authentication.service";
 import {Observable} from "rxjs";
+import {SidebarEntrepreneurComponent} from "./public/sidebar-entrepreneur/sidebar-entrepreneur.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ToolbarContentComponent, NgIf, SidebarCompanyComponent, AsyncPipe],
+  imports: [RouterOutlet, ToolbarContentComponent, NgIf, SidebarCompanyComponent, AsyncPipe, SidebarEntrepreneurComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
