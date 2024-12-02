@@ -15,10 +15,11 @@ import {Observable} from "rxjs";
 })
 export class AppComponent  implements OnInit {
   isSignedIn!: Observable<boolean>;
-
+  userRole!: Observable<string[]>;
   constructor(private authService: AuthenticationService) {}
 
   ngOnInit(): void {
-    this.isSignedIn = this.authService.isSignedIn;
+    this.isSignedIn = this.authService.isSignedIn
+    this.userRole = this.authService.currentUserRoles;
   }
 }
