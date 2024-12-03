@@ -20,6 +20,7 @@ export class RequestServiceEntity {
   destinationLng: number;
   loadDetail: any;
   weight: any;
+  userId: number;
 
   constructor(requestService: {
     id?: number,
@@ -43,7 +44,8 @@ export class RequestServiceEntity {
     destinationLat?: number,
     destinationLng?: number,
     loadDetail?: any,
-    weight?: any
+    weight?: any,
+    userId: number;
   }) {
     this.id = requestService.id || 0;
     this.unloadDirection = requestService.unloadDirection || '';
@@ -68,5 +70,6 @@ export class RequestServiceEntity {
     this.destinationLng = requestService.destinationLng || 0;
     this.loadDetail = requestService.loadDetail || '';
     this.weight = requestService.weight || '';
+    this.userId = requestService.userId || 0;
   }
 }

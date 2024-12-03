@@ -30,6 +30,7 @@ import {HttpClient} from "@angular/common/http";
 import {RequestService} from "../../service/request.service";
 import * as L from "leaflet";
 import {LocationDataEntity} from "../../../maps/model/location-data.entity";
+import {AuthenticationService} from "../../../iam/services/authentication.service";
 
 @Component({
   selector: 'app-add-request-trip',
@@ -59,8 +60,7 @@ import {LocationDataEntity} from "../../../maps/model/location-data.entity";
   styleUrl: './add-request-trip.component.css'
 })
 export class AddRequestTripComponent  implements OnInit, AfterViewInit {
-  @Input() trip: RequestServiceEntity = new RequestServiceEntity({});
-  @Input() editMode: boolean = false;
+  @Input() trip: RequestServiceEntity = new RequestServiceEntity({ userId: 0 });  @Input() editMode: boolean = false;
   @Output() tripAddRequested = new EventEmitter<RequestServiceEntity>();
   @Output() tripUpdateRequested = new EventEmitter<RequestServiceEntity>();
   @Output() cancelRequested = new EventEmitter();
@@ -81,10 +81,19 @@ export class AddRequestTripComponent  implements OnInit, AfterViewInit {
   @ViewChild('mapContainer') mapContainer!: ElementRef;
 
   formValid: any;
+  userId: number = 0;
+  constructor(private router: Router,
+              private http: HttpClient,
+              private requestService: RequestService,
+              private dialog: MatDialog,
+              private authService: AuthenticationService) {}
 
-  constructor(private router: Router, private http: HttpClient, private requestService: RequestService, private dialog: MatDialog) {}
+  ngOnInit() {
+    this.authService.currentUserId.subscribe(id => {
+      this.userId = id;
+    });
 
-  ngOnInit() {}
+  }
 
   ngAfterViewInit() {
     this.initMap();
@@ -252,20 +261,27 @@ export class AddRequestTripComponent  implements OnInit, AfterViewInit {
     if (this.pickupLatLng && this.destinationLatLng) {
       const currentDate = new Date().toISOString();
       const data = new RequestServiceEntity({
-        id: this.trip.id,
-        holderName: this.trip.holderName,
+        unloadDirection: this.trip.unloadDirection,
         type: this.trip.type,
-        loadDetail: this.trip.loadDetail,
         numberPackages: this.trip.numberPackages,
-        weight: this.trip.weight,
-        pickupAddress: this.pickupAddress,
-        destinationAddress: this.destinationAddress,
+        country: this.trip.country,
+        department: this.trip.department,
+        district: this.trip.district,
+        destination: this.trip.destination,
+        unloadLocation: this.trip.unloadLocation,
+        unloadDate: currentDate,
         distance: this.distance,
+        statusId: this.trip.statusId,
+        holderName: this.trip.holderName,
+        pickupAddress: this.pickupAddress,
         pickupLat: this.pickupLatLng.lat,
         pickupLng: this.pickupLatLng.lng,
+        destinationAddress: this.destinationAddress,
         destinationLat: this.destinationLatLng.lat,
         destinationLng: this.destinationLatLng.lng,
-        unloadDate: currentDate
+        loadDetail: this.trip.loadDetail,
+        weight: this.trip.weight,
+        userId: this.userId
       });
 
       this.requestService.saveRequestServiceTrip(data)
@@ -311,7 +327,7 @@ export class AddRequestTripComponent  implements OnInit, AfterViewInit {
   }
 
   resetEditState() {
-    this.trip = new RequestServiceEntity({});
+    this.trip = new RequestServiceEntity({ userId: this.userId });
     this.editMode = false;
     this.tripForm.resetForm();
   }
@@ -324,27 +340,32 @@ export class AddRequestTripComponent  implements OnInit, AfterViewInit {
     if (this.pickupLatLng && this.destinationLatLng) {
       const currentDate = new Date().toISOString();
       const data = new RequestServiceEntity({
-        id: this.trip.id,
-        holderName: this.trip.holderName,
+        unloadDirection: this.trip.unloadDirection,
         type: this.trip.type,
-        loadDetail: this.trip.loadDetail,
         numberPackages: this.trip.numberPackages,
-        weight: this.trip.weight,
-        pickupAddress: this.pickupAddress,
-        destinationAddress: this.destinationAddress,
+        country: this.trip.country,
+        department: this.trip.department,
+        district: this.trip.district,
+        destination: this.trip.destination,
+        unloadLocation: this.trip.unloadLocation,
+        unloadDate: currentDate,
         distance: this.distance,
+        statusId: this.trip.statusId,
+        holderName: this.trip.holderName,
+        pickupAddress: this.pickupAddress,
         pickupLat: this.pickupLatLng.lat,
         pickupLng: this.pickupLatLng.lng,
+        destinationAddress: this.destinationAddress,
         destinationLat: this.destinationLatLng.lat,
         destinationLng: this.destinationLatLng.lng,
-        unloadDate: currentDate,
-        statusId: 3
+        loadDetail: this.trip.loadDetail,
+        weight: this.trip.weight,
+        userId: this.userId
       });
 
       try {
         const savedTrip = await this.requestService.saveRequestServiceTrip(data).toPromise();
         console.log('Request saved successfully', savedTrip);
-
       } catch (error) {
         console.error('Error saving request', error);
       }

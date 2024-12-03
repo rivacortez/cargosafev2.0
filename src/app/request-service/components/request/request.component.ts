@@ -6,6 +6,7 @@ import {MatTableDataSource} from "@angular/material/table";
 
 import {RequestService} from "../../service/request.service";
 import {RequestServiceEntity} from "../../model/request-service.entity";
+import {AuthenticationService} from "../../../iam/services/authentication.service";
 
 @Component({
   selector: 'app-request',
@@ -26,11 +27,21 @@ export class RequestComponent {
   protected dataSource!: MatTableDataSource<any>;
   private tripService: RequestService = inject(RequestService);
   protected tripData!: RequestServiceEntity;
+  private authService: AuthenticationService = inject(AuthenticationService);
+  private userId: number = 0;
 
   constructor() {
     this.editMode = false;
-    this.tripData = new RequestServiceEntity({});
+    this.tripData = new RequestServiceEntity({ userId: this.userId });
     this.dataSource = new MatTableDataSource();
+  }
+
+  ngOnInit(): void {
+    this.authService.currentUserId.subscribe(id => {
+      this.userId = id;
+      this.tripData = new RequestServiceEntity({ userId: this.userId });
+      this.getAllTrips();
+    });
   }
 
   protected onEditItem(item: RequestServiceEntity) {
@@ -47,8 +58,6 @@ export class RequestComponent {
     this.getAllTrips();
   }
 
-
-
   protected onTripUpdateRequested(item: RequestServiceEntity) {
     this.tripData = item;
     this.updateTrip();
@@ -56,7 +65,7 @@ export class RequestComponent {
   }
 
   private resetEditState() {
-    this.tripData = new RequestServiceEntity({});
+    this.tripData = new RequestServiceEntity({ userId: this.userId });
     this.editMode = false;
   }
 
@@ -65,8 +74,6 @@ export class RequestComponent {
       this.dataSource.data = response;
     });
   }
-
-
 
   private updateTrip() {
     let tripToUpdate = this.tripData;
@@ -86,10 +93,6 @@ export class RequestComponent {
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-  }
-
-  ngOnInit(): void {
-    this.getAllTrips();
   }
 
   protected onTripAddRequested(item: RequestServiceEntity) {
