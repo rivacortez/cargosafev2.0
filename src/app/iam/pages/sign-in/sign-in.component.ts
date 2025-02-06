@@ -2,14 +2,8 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../services/authentication.service";
 import {SignInRequest} from "../../model/sign-in.request";
-import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
-import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
-import {MatInput} from "@angular/material/input";
-import {MatButton} from "@angular/material/button";
-import {BaseFormComponent} from "../../../../shared/components/base-form.component";
-import {NgIf} from "@angular/common";
-import {Router, RouterLink} from "@angular/router";
-import {SignUpRequest} from "../../model/sign-up.request";
+import {Router, NavigationEnd,NavigationStart} from "@angular/router";
+import gsap from 'gsap';
 
 /**
  * Sign in component
@@ -18,18 +12,9 @@ import {SignUpRequest} from "../../model/sign-up.request";
   selector: 'app-sign-in',
   standalone: true,
   imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardContent,
-    MatCardTitle,
-    MatError,
+
     ReactiveFormsModule,
-    MatFormField,
-    MatInput,
-    MatButton,
-    NgIf,
-    MatLabel,
-    RouterLink
+
   ],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css'
@@ -39,30 +24,64 @@ export class SignInComponent  implements OnInit {
   submittedSignIn = false;
 
   @ViewChild('container', { static: true }) container!: ElementRef<HTMLElement>;
+
   constructor(
     private builder: FormBuilder,
     private authenticationService: AuthenticationService,
     private router: Router
-  ) {}
+  ) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        gsap.to(this.container.nativeElement, {
+          opacity: 0,
+          duration: 0.2
+        });
+      } else if (event instanceof NavigationEnd) {
+        gsap.from(this.container.nativeElement, {
+          opacity: 0,
+          duration: 0.2
+        });
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.signInForm = this.builder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+  }
 
-    const signUpBtn = document.querySelector("#sign-up-btn") as HTMLButtonElement;
-    signUpBtn.addEventListener("click", () => {
-      this.router.navigate(['/sign-up']);
-    });
-  }
   onSignUp(): void {
-    this.router.navigate(['/sign-up']);
+    const elements = this.container.nativeElement.querySelectorAll('.title, .input-field, .btn, .social-text, .social-media, .panel .content, .panel img');
+    gsap.timeline()
+      .to(elements, {
+        y: -20,
+        duration: 0.1,
+        ease: "bounce.out",
+        stagger: 0.1
+      })
+      .to(elements, {
+        x: '100vw',
+        duration: 0.1,
+        ease: "power1.inOut",
+        stagger: 0.1
+      })
+      .to(elements, {
+        opacity: 0,
+        duration: 0.1,
+        onComplete: () => {
+          this.router.navigate(['/sign-up']);
+        }
+      });
   }
+
   onSubmitSignIn(): void {
     if (this.signInForm.invalid) return;
+
     const { username, password } = this.signInForm.value;
     const signInRequest = new SignInRequest(username, password);
+
     this.authenticationService.signIn(signInRequest).subscribe({
       next: (response) => {
         this.submittedSignIn = true;

@@ -1,162 +1,182 @@
-import {AfterViewInit, Component, inject, OnInit, ViewChild} from '@angular/core';
-import {DriverEntity} from "../../model/driver.entity";
-import {MatPaginator} from "@angular/material/paginator";
-import {MatSort, MatSortHeader} from "@angular/material/sort";
-import {
-  MatCell, MatCellDef,
-  MatColumnDef,
-  MatHeaderCell,
-  MatHeaderCellDef, MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
-  MatTable,
-  MatTableDataSource
-} from "@angular/material/table";
-import {DriverService} from "../../services/driver.service";
-import {
-  DriversEditComponent
-} from "../../components/drivers-edit/drivers-edit.component";
-import {MatIcon, MatIconModule} from "@angular/material/icon";
-import {NgClass} from "@angular/common";
-import {MatButton, MatIconButton} from "@angular/material/button";
-import {MatFormField, MatLabel} from "@angular/material/form-field";
-import {FormsModule} from "@angular/forms";
-import {MatInput} from "@angular/material/input";
-import {MatCard, MatCardTitle} from "@angular/material/card";
-import {MatDialog} from "@angular/material/dialog";
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { DriverEntity } from "../../model/driver.entity";
+import { DriverService } from "../../services/driver.service";
+import { DriversEditComponent } from "../../components/drivers-edit/drivers-edit.component";
+import { MatDialog } from "@angular/material/dialog";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {NgClass, NgForOf, TitleCasePipe} from "@angular/common";
+import { PhotoDialogComponent } from '../../../../shared/dialogs/photo-dialog/photo-dialog.component';
+import {ThemeService} from "../../../../shared/services/theme.service";
 
 @Component({
   selector: 'app-driver-management',
+  templateUrl: './driver-management.component.html',
   standalone: true,
   imports: [
-    DriversEditComponent,
-    MatTable,
-    MatSort,
-    MatColumnDef,
-    MatHeaderCell,
-    MatSortHeader,
-    MatCell,
-    MatHeaderCellDef,
-    MatCellDef,
-    MatIcon,
-    MatHeaderRow,
-    NgClass,
-    MatRowDef,
-    MatHeaderRowDef,
-    MatRow,
-    MatPaginator,
-    MatIconModule,
-    MatIconButton,
-    MatFormField,
-    FormsModule,
-    MatInput,
-    MatButton,
-    MatLabel,
-    MatCardTitle,
-    MatCard,
-
+    TitleCasePipe,
+    NgForOf,
+    NgClass
   ],
-  templateUrl: './driver-management.component.html',
-  styleUrl: './driver-management.component.css'
+  styleUrls: ['./driver-management.component.css']
 })
-export class DriverManagementComponent implements OnInit, AfterViewInit {
-  driverData: DriverEntity = new DriverEntity({});
-  columnsToDisplay: string[] = ['id', 'name', 'dni', 'contactNum', 'license', 'photoUrl', 'actions'];
-  dataSource: MatTableDataSource<DriverEntity> = new MatTableDataSource();
-  editMode: boolean = false;
+export class DriverManagementComponent  implements OnInit, AfterViewInit {
+  @ViewChild('tableWrapper') tableWrapper!: ElementRef;
+  @ViewChild('addDriverButton') addDriverButton!: ElementRef;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  columnsToDisplay = ['id', 'photoUrl', 'name', 'dni', 'license', 'ruc', 'actions'];
+  dataSource: DriverEntity[] = [];
+  currentDriver = new DriverEntity({});
+  editMode = false;
+  isDarkMode = false;
 
-  private driverService: DriverService = inject(DriverService);
-  private dialog: MatDialog = inject(MatDialog);
-
-  ngOnInit(): void {
-    this.getAllDrivers();
+  constructor(
+    private driverService: DriverService,
+    private dialog: MatDialog,
+    private renderer: Renderer2,
+    private themeService: ThemeService
+  ) {
+    gsap.registerPlugin(ScrollTrigger);
+    this.isDarkMode = this.themeService.getActiveTheme() === 'dark';
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  ngOnInit() {
+    this.loadDrivers();
   }
 
-  onEditItem(item: DriverEntity): void {
-    this.editMode = true;
-    this.driverData = item;
-    this.openEditDialog(item);
+  ngAfterViewInit() {
+    this.initializeAnimations();
   }
 
-  onDeleteItem(item: DriverEntity): void {
-    this.deleteDriver(item.id);
-  }
-
-  onAddDriver(): void {
-    this.editMode = false;
-    this.driverData = new DriverEntity({});
-    this.openEditDialog(this.driverData);
-  }
-
-  private resetEditState(): void {
-    this.driverData = new DriverEntity({});
-    this.editMode = false;
-  }
-
-  private getAllDrivers(): void {
-    this.driverService.getAll().subscribe((response: DriverEntity[]) => {
-      this.dataSource.data = response;
+  private loadDrivers() {
+    this.driverService.getAll().subscribe(drivers => {
+      this.dataSource = drivers;
+      this.refreshAnimations();
     });
   }
 
-  private createDriver(): void {
-    this.driverService.create(this.driverData).subscribe((response: DriverEntity) => {
-      this.dataSource.data.push(response);
-      this.dataSource.data = [...this.dataSource.data];
-    });
-  }
-
-  private updateDriver(): void {
-    this.driverService.update(this.driverData.id, this.driverData).subscribe({
-      next: (response: DriverEntity) => {
-        const index = this.dataSource.data.findIndex(driver => driver.id === response.id);
-        if (index !== -1) {
-          this.dataSource.data[index] = response;
-          this.dataSource.data = [...this.dataSource.data];
-        }
-        console.log('Driver Response: ', response);
-      },
-      error: (error) => {
-        console.error('Error updating driver:', error);
+  private initializeAnimations() {
+    gsap.from('.driver-table tr', {
+      duration: 0.8,
+      opacity: 0,
+      y: 20,
+      stagger: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.table-scroll-wrapper',
+        start: 'top center'
       }
     });
+
+    this.setupHoverEffects();
   }
 
-  private deleteDriver(id: number): void {
-    this.driverService.delete(id).subscribe({
-      next: () => {
-        this.dataSource.data = this.dataSource.data.filter(driver => driver.id !== id);
-        this.dataSource.data = [...this.dataSource.data];
-        console.log('Driver deleted successfully');
-      },
-      error: (error) => {
-        console.error('Error deleting driver:', error);
-      }
+  private setupHoverEffects() {
+    gsap.to('.driver-table tr', {
+      duration: 0.3,
+      backgroundColor: '#f8f9fa',
+      paused: true,
+      onMouseEnter: (self: gsap.core.Tween) => self.play(),
+      onMouseLeave: (self: gsap.core.Tween) => self.reverse()
+    });
+
+    gsap.to(this.addDriverButton.nativeElement, {
+      scale: 1.1,
+      duration: 0.3,
+      ease: 'power1.inOut',
+      paused: true,
+      onMouseEnter: (self: gsap.core.Tween) => self.play(),
+      onMouseLeave: (self: gsap.core.Tween) => self.reverse()
     });
   }
 
-  private openEditDialog(driver: DriverEntity): void {
+  onAddDriver() {
+    const buttonPosition = this.addDriverButton.nativeElement.getBoundingClientRect();
     const dialogRef = this.dialog.open(DriversEditComponent, {
-      width: '400px',
-      data: driver
+      width: '90%',
+      maxWidth: '500px',
+      data: { position: buttonPosition },
+      panelClass: ['custom-dialog', 'accessible-dialog'],
+      ariaDescribedBy: 'dialog-content',
+      ariaLabelledBy: 'dialog-title',
+      disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        if (this.editMode) {
-          this.driverData = result;
-          this.updateDriver();
-        } else {
-          this.driverData = result;
-          this.createDriver();
-        }
+        this.handleDialogResult(result);
       }
     });
+  }
+
+  onEditItem(driver: DriverEntity) {
+    const buttonPosition = this.addDriverButton.nativeElement.getBoundingClientRect();
+    const dialogRef = this.dialog.open(DriversEditComponent, {
+      width: '90%',
+      maxWidth: '500px',
+      data: { ...driver, position: buttonPosition }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.handleDialogResult(result);
+      }
+    });
+  }
+
+  onDeleteItem(driver: DriverEntity) {
+    const row = this.renderer.selectRootElement(`#row-${driver.id}`);
+    gsap.to(row, {
+      duration: 0.4,
+      opacity: 0,
+      x: -100,
+      ease: 'power2.in',
+      onComplete: () => this.deleteDriver(driver.id)
+    });
+  }
+
+  private deleteDriver(id: number) {
+    this.driverService.delete(id).subscribe(() => {
+      this.dataSource = this.dataSource.filter(d => d.id !== id);
+      this.refreshAnimations();
+    });
+  }
+
+  private handleDialogResult(result: DriverEntity) {
+    if (this.editMode) {
+      this.updateDriver(result);
+    } else {
+      this.createDriver(result);
+    }
+  }
+
+  private createDriver(driver: DriverEntity) {
+    this.driverService.create(driver).subscribe(newDriver => {
+      this.dataSource = [...this.dataSource, newDriver];
+      this.refreshAnimations();
+    });
+  }
+
+  private updateDriver(driver: DriverEntity) {
+    this.driverService.update(driver.id, driver).subscribe(updatedDriver => {
+      this.dataSource = this.dataSource.map(d => d.id === updatedDriver.id ? updatedDriver : d);
+      this.refreshAnimations();
+    });
+  }
+
+  private refreshAnimations() {
+    setTimeout(() => ScrollTrigger.refresh(), 100);
+  }
+
+  viewPhoto(photoUrl: string) {
+    this.dialog.open(PhotoDialogComponent, {
+      data: { photoUrl },
+      panelClass: 'photo-modal'
+    });
+  }
+
+  toggleTheme(): void {
+    this.themeService.toggleTheme();
+    this.isDarkMode = !this.isDarkMode;
   }
 }

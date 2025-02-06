@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router, RouterLink, RouterOutlet} from "@angular/router";
 import {AuthenticationService} from "../../iam/services/authentication.service";
 import {ProfileService} from "../../profile/service/profile.service";
+import {ThemeService} from "../../../shared/services/theme.service";
 
 @Component({
   selector: 'app-sidebar-company',
@@ -19,17 +20,19 @@ export class SidebarCompanyComponent implements OnInit {
   email: string = '';
   profileImageUrl: string = '';
 
+  constructor(
+    private authenticationService: AuthenticationService,
+    private profileService: ProfileService,
+    private router: Router,
+    private themeService: ThemeService
+  ) {}
+
   ngOnInit(): void {
     this.showSidebar('header-toggle', 'sidebar', 'header', 'main');
     this.setupSidebarLinks();
     this.setupThemeButton();
     this.loadUserProfile();
   }
-  constructor(
-    private authenticationService: AuthenticationService,
-    private profileService: ProfileService,
-    private router: Router
-  ) {}
 
   private loadUserProfile(): void {
     this.authenticationService.currentUserId.subscribe(userId => {
@@ -79,9 +82,7 @@ export class SidebarCompanyComponent implements OnInit {
   }
 
   private setupThemeButton(): void {
-    const themeButton = document.getElementById(
-      'theme-button'
-    ) as HTMLButtonElement;
+    const themeButton = document.getElementById('theme-button') as HTMLButtonElement;
     const darkTheme = 'dark-theme';
     const iconTheme = 'ri-sun-fill';
 
@@ -96,12 +97,8 @@ export class SidebarCompanyComponent implements OnInit {
         : 'ri-sun-fill';
 
     if (selectedTheme) {
-      document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](
-        darkTheme
-      );
-      themeButton.classList[
-        selectedIcon === 'ri-moon-clear-fill' ? 'add' : 'remove'
-        ](iconTheme);
+      document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme);
+      themeButton.classList[selectedIcon === 'ri-moon-clear-fill' ? 'add' : 'remove'](iconTheme);
     }
 
     themeButton.addEventListener('click', () => {
@@ -109,6 +106,7 @@ export class SidebarCompanyComponent implements OnInit {
       themeButton.classList.toggle(iconTheme);
       localStorage.setItem('selected-theme', getCurrentTheme());
       localStorage.setItem('selected-icon', getCurrentIcon());
+      this.themeService.toggleTheme();
     });
   }
 

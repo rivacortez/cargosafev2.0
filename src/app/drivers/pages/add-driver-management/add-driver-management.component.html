@@ -1,36 +1,42 @@
+<div class="modal-overlay" *ngIf="isOpen" (click)="onCancel()">
+  <div class="modal-container" (click)="$event.stopPropagation()" [class.dark-theme]="isDarkMode">
+    <!-- Encabezado -->
+    <header class="modal-header">
+      <button class="close-button" aria-label="Cerrar" (click)="onCancel()">
+        <svg class="close-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>
+      </button>
+    </header>
 
+    <!-- Formulario -->
+    <form #driverForm="ngForm" class="modal-form">
+      <div class="form-field">
+        <label for="name">Name</label>
+        <input id="name" type="text" name="name" required [(ngModel)]="driver.name" placeholder="Enter driver's name" />
+      </div>
+      <div class="form-field">
+        <label for="dni">DNI</label>
+        <input id="dni" type="text" name="dni" required [(ngModel)]="driver.dni" placeholder="Enter DNI" />
+      </div>
+      <div class="form-field">
+        <label for="phone">Phone</label>
+        <input id="phone" type="text" name="phone" required [(ngModel)]="driver.contactNum" placeholder="Enter phone number" />
+      </div>
+      <div class="form-field">
+        <label for="license">License</label>
+        <input id="license" type="text" name="license" required [(ngModel)]="driver.license" placeholder="Enter license number" />
+      </div>
+      <div class="form-field">
+        <label for="photoUrl">Photo URL</label>
+        <input id="photoUrl" type="text" name="photoUrl" [(ngModel)]="driver.photoUrl" placeholder="Enter photo URL (optional)" />
+      </div>
+    </form>
 
-<div class="driver-form-container">
-  <h2 class="form-title">Agregar Conductor</h2>
-  <form (submit)="onSubmit()" #driverForm="ngForm" class="driver-form">
-    <mat-form-field appearance="outline" class="full-width mat-elegant-field">
-      <mat-label>Nombre</mat-label>
-      <input matInput placeholder="Nombre del conductor" name="name" required [(ngModel)]="driver.name">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="full-width mat-elegant-field">
-      <mat-label>DNI</mat-label>
-      <input matInput placeholder="DNI del conductor" name="dni" required [(ngModel)]="driver.dni">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="full-width mat-elegant-field">
-      <mat-label>Licencia</mat-label>
-      <input matInput placeholder="Licencia del conductor" name="license" required [(ngModel)]="driver.license">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="full-width mat-elegant-field">
-      <mat-label>Teléfono</mat-label>
-      <input matInput placeholder="Teléfono del conductor" name="contactNum" required [(ngModel)]="driver.contactNum">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="full-width mat-elegant-field">
-      <mat-label>URL de Foto</mat-label>
-      <input matInput placeholder="URL de la foto del conductor" name="photoUrl" [(ngModel)]="driver.photoUrl">
-    </mat-form-field>
-
-    <div class="button-group">
-      <button mat-raised-button color="primary" class="btn-submit">Agregar</button>
-      <button mat-button color="warn" class="btn-cancel" (click)="onCancel()">Cancelar</button>
-    </div>
-  </form>
+    <!-- Acciones -->
+    <footer class="modal-actions">
+      <button class="cancel-button" (click)="onCancel()">Cancel</button>
+      <button class="submit-button" (click)="onSubmit()">Accept</button>
+    </footer>
+  </div>
 </div>

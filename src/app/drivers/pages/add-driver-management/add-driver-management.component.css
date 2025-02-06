@@ -1,91 +1,216 @@
-
-.driver-form-container:hover {
-
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-}
-
-.form-title {
-  font-size: 26px;
-  text-align: center;
-  color: #37474f;
-  font-weight: 600;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-
-.driver-form {
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+  animation: fadeIn 0.3s ease;
 }
 
-.full-width {
+.modal-container {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   width: 100%;
+  max-width: 500px;
+  margin: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
-
-
-.mat-form-field {
-  width: 100%;
-}
-.mat-elegant-field .mat-input-element {
-  padding: 0.7rem;
-  font-size: 1.1rem;
-  transition: border-color 0.3s ease;
-}
-.mat-elegant-field.mat-form-field-appearance-outline .mat-form-field-outline {
-  color: #F1F500;
-}
-
-.mat-elegant-field:hover .mat-input-element {
-  border-color: #F1F500;
-}
-
-.mat-elegant-field .mat-form-field-label {
-  color: #333333;
-  font-weight: bold;
-}
-
-.button-group {
+.modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 2rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid #e4e4e4;
 }
 
-.btn-submit {
-  background-color: #F1F500;
-  color: #333333;
-  font-weight: bold;
-  font-size: 1.1rem;
-  padding: 0.8rem 1.5rem;
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.close-icon {
+  width: 24px;
+  height: 24px;
+  fill: #666;
+}
+
+.close-button:hover {
+  background: #f5f5f5;
+}
+
+.close-button:hover .close-icon {
+  fill: #333;
+}
+
+.modal-form {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-field label {
+  font-size: 0.9rem;
+  color: #444;
+  font-weight: 500;
+}
+
+.form-field input {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  transition: background-color 0.3s ease;
+  font-size: 1rem;
+  transition: all 0.2s ease;
 }
 
-.btn-submit:hover {
-  background-color: #e5db00;
+.form-field input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
 }
 
-.btn-cancel {
-  color: #ff5252;
-  font-size: 1.1rem;
-  padding: 0.8rem 1.5rem;
+.form-field input::placeholder {
+  color: #999;
+}
+
+.modal-actions {
+  padding: 1.5rem;
+  border-top: 1px solid #e4e4e4;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.cancel-button, .submit-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
   border-radius: 8px;
-  transition: color 0.3s ease;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.btn-cancel:hover {
-  color: #ff0000;
+.cancel-button {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.cancel-button:hover {
+  background: #eee;
+}
+
+.submit-button {
+  background: #4a90e2;
+  color: white;
+}
+
+.submit-button:hover {
+  background: #357abd;
+}
+
+.dark-theme.modal-container {
+  background: #2d2d2d;
+  color: #ffffff;
+}
+
+.dark-theme .modal-header {
+  border-color: #404040;
+}
+
+.dark-theme .modal-header h2 {
+  color: #ffffff;
+}
+
+.dark-theme .close-button:hover {
+  background: #404040;
+}
+
+.dark-theme .close-icon {
+  fill: #999;
+}
+
+.dark-theme .form-field label {
+  color: #ccc;
+}
+
+.dark-theme .form-field input {
+  background: #404040;
+  border-color: #555;
+  color: white;
+}
+
+.dark-theme .form-field input::placeholder {
+  color: #888;
+}
+
+.dark-theme .modal-actions {
+  border-color: #404040;
+}
+
+.dark-theme .cancel-button {
+  background: #404040;
+  color: #ccc;
+}
+
+.dark-theme .cancel-button:hover {
+  background: #505050;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .modal-container {
+    margin: 0.5rem;
+  }
+
+  .modal-header,
+  .modal-form,
+  .modal-actions {
+    padding: 1rem;
+  }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.add-driver-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--primary-color);
+  color: var(--background-light);
+  padding: 0.875rem 1.75rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }

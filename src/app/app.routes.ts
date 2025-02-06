@@ -46,7 +46,7 @@ export const routes: Routes = [
   { path: 'pages', component: PageNotFoundComponent },
 
 // Driver management
-  { path: 'drivers/management', component: DriverManagementComponent, canActivate: [authenticationGuard] },
+  { path: 'drivers/management', component: DriverManagementComponent },
   { path: 'management/driver/new', component: AddDriverManagementComponent, canActivate: [authenticationGuard] },
 
   // Vehicles management

@@ -1,0 +1,27 @@
+:root {
+  --background-color: #121212;
+  --text-color: #ffffff;
+  --primary-color: #4ec4e8;
+  --header-height: 3.5rem;
+  --first-color: hsl(105, 70%, 63%);
+  --title-color: hsl(228, 18%, 96%);
+  --shadow-color: hsla(228, 80%, 4%, .3);
+  --body-font: "Nunito Sans", system-ui;
+  --normal-font-size: .938rem;
+  --smaller-font-size: .75rem;
+  --tiny-font-size: .75rem;
+  --font-regular: 400;
+  --font-semi-bold: 600;
+  --z-tooltip: 10;
+  --z-fixed: 100;
+  --body-color: #121212;
+
+}
+
+.dark-theme .sidebar__content::-webkit-scrollbar {
+  background-color: hsl(228, 16%, 30%);
+}
+
+.dark-theme .sidebar__content::-webkit-scrollbar-thumb {
+  background-color: hsl(228, 16%, 40%);
+}

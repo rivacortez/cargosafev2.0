@@ -21,24 +21,20 @@ import {Router} from "@angular/router";
   selector: 'app-add-driver-management',
   standalone: true,
   imports: [
-    DriversEditComponent,
-    MatFormField,
+
     NgIf,
-    MatInput,
-    MatButton,
-    MatCardTitle,
-    MatCard,
-    MatCardContent,
+
     FormsModule,
 
-    MatLabel,
-    MatError,
-    MatIcon
+
   ],
   templateUrl: './add-driver-management.component.html',
   styleUrl: './add-driver-management.component.css'
 })
 export class AddDriverManagementComponent  {
+  isOpen = true;
+  isDarkMode = false;
+
   driver: DriverEntity = new DriverEntity({});
   @Output() driverAddRequested = new EventEmitter<DriverEntity>();
   @ViewChild('driverForm', { static: false }) driverForm!: NgForm;
@@ -46,8 +42,6 @@ export class AddDriverManagementComponent  {
   private driverService: DriverService = inject(DriverService);
   private dialog: MatDialog = inject(MatDialog);
   private router: Router = inject(Router);
-
-
 
   onSubmit() {
     if (this.driverForm.form.valid) {
@@ -67,7 +61,6 @@ export class AddDriverManagementComponent  {
       console.error('Invalid form data');
     }
   }
-
 
   private showSuccessDialog(): void {
     const dialogRef = this.dialog.open(DialogSuccessfullyComponent, {
